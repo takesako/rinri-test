@@ -118,7 +118,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 
   <section id="startBox" class="startBox">
     <h2>あなたの倫理観をテストする</h2>
-    <p>Webサービスの脆弱性、APIの仕様の穴、AIエージェントによる自動化。<br>「できる」と「やってよい」の境界を、20問で確認しましょう。</p>
+    <p>Webサービスの脆弱性、APIの仕様の穴、AIエージェントによる自動化。<br>「できる」と「やってよい」の境界を、20問で確認しましょう。<br><strong>所要時間の目安は5分です。</strong></p>
     <button type="button" id="startBtn" class="startBtn">診断を開始する</button>
   </section>
 
@@ -164,7 +164,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q3" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問3 / 20　5点</div>
   <h2>メニューIDを総当たりで列挙する</h2>
-  <p>飲食店のモバイルオーダー画面では見えないメニューを探すため、メニューIDを1から1000まで機械的に試して一覧を作った。</p>
+  <p>飲食店のモバイルオーダー画面では見えないメニューを探すため、メニューIDを1から10万まで機械的に試して一覧を作った。</p>
   <div class="choices">
 <label><input type="radio" name="q3" value="A"><span>見るだけなので問題ない</span></label>
 <label><input type="radio" name="q3" value="B"><span>一人でやるなら負荷は小さいので問題ない</span></label>
@@ -209,8 +209,8 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 
 <section class="question" id="q6" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問6 / 20　5点</div>
-  <h2>飲食店の公式モバイルオーダーをCLI化する</h2>
-  <p>友人と飲食店に行き、テーブルのQRコードからモバイルオーダー画面を開いた。ブラウザの開発者ツールで通信を観察したところ、注文APIらしきリクエストが見えた。あなたは同じリクエストを送れるCLIクライアントを作り、実際の店舗でそのCLIから注文しようとしている。</p>
+  <h2>飲食店の公式モバイルオーダーをライブラリ・代替クライアント・CLI化する</h2>
+  <p>友人と飲食店に行き、テーブルのQRコードからモバイルオーダー画面を開いた。ブラウザの開発者ツールで通信を観察したところ、注文APIらしきリクエストが見えた。あなたは同じリクエストを送れるライブラリ・代替クライアント・CLIを作り、実際の店舗でその代替手段から注文しようとしている。</p>
   <div class="choices">
 <label><input type="radio" name="q6" value="A"><span>自分が食べる注文なので問題ない</span></label>
 <label><input type="radio" name="q6" value="B"><span>技術的に同じ通信なら飲食店のモバイルオーダー画面と同じなので問題ない</span></label>
@@ -304,7 +304,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q12" data-type="judgement" data-answer="OK" data-points="5">
   <div class="meta">問12 / 20　5点</div>
   <h2>本番APIを使わずモックで再現する</h2>
-  <p>実店舗の注文APIは叩かず、ローカルPC上にモックサーバーを作った。架空のメニューと架空の注文番号だけを使い、注文CLIやAIエージェント連携を学習用に再現した。</p>
+  <p>実店舗の注文APIは叩かず、ローカルPC上にモックサーバーを作った。架空のメニューと架空の注文番号だけを使い、注文ライブラリ・代替クライアント・CLIやAIエージェント連携を学習用に再現した。</p>
   <div class="choices">
 <label><input type="radio" name="q12" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q12" value="注意が必要"><span>注意が必要</span></label>
