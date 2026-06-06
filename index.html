@@ -118,8 +118,8 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   
 <section class="question" id="q1" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問1 / 20　5点</div>
-  <h2>地域団体のWebサイトでXSSらしき挙動を見つけた</h2>
-  <p>地域イベントの参加者募集ページで、会場名を検索するフォームに&lt;script&gt;alert(1);&lt;/script&gt;を入れたところ、ブラウザにアラートが表示された。ページには主催団体名、問い合わせ先、参加申込フォームへのリンクもある。あなたは「XSS見つけた！」と思い、スクリーンショット、団体名、URLをSNSに投稿しようとしている。</p>
+  <h2>地域イベントのWebサイトでXSSらしき挙動を見つけた</h2>
+  <p>地域イベントの参加者募集ページで、会場名を検索するフォームに&lt;script&gt;alert(1);&lt;/script&gt;を入れたところ、ブラウザにアラートが表示された。ページには主催団体名、問い合わせ先、参加申込フォームへのリンクもある。あなたは「XSS見つけた！」と思い、注意喚起のため、スクリーンショット、団体名、URLをSNSに投稿しようとしている。</p>
   <div class="choices">
 <label><input type="radio" name="q1" value="A"><span>脆弱性を見つけたので社会貢献として公開してよい</span></label>
 <label><input type="radio" name="q1" value="B"><span>アラートだけなら実害がないので問題ない</span></label>
@@ -166,7 +166,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q4" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
   <div class="meta">問4 / 20　5点</div>
   <h2>公式ロゴを非公式ツールのREADMEに載せる</h2>
-  <p>飲食店のモバイルオーダーを便利にする非公式ツールをAIエージェントを使って作ってGitHubで公開した。READMEの一番上に企業の公式ロゴを大きく載せ、『非公式だけど便利です』と説明したため、見る人によっては公式ツールのようにも見える。</p>
+  <p>飲食店のモバイルオーダーを便利にする非公式ツールをAIエージェントを使って作ってGitHubで公開した。READMEの一番上に企業の公式ロゴを大きく載せ、『非公式だけど便利です』『許可はとっていません』『自己責任で利用してください』と免責事項も含めて非公式ツールであることをきちんと説明した。</p>
   <div class="choices">
 <label><input type="radio" name="q4" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q4" value="注意が必要"><span>注意が必要</span></label>
@@ -180,8 +180,8 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 
 <section class="question" id="q5" data-type="judgement" data-answer="NG" data-points="5">
   <div class="meta">問5 / 20　5点</div>
-  <h2>管理画面に入れた証拠を仲間内に見せる</h2>
-  <p>ある学生が外部サービスの管理画面に入れてしまった。『俺が見つけた証拠』として、管理画面のスクリーンショットを仲間内に見せたところ、画面には利用者の名前、メールアドレス、予約内容が映っていた。</p>
+  <h2>管理画面が見えた証拠を仲間内に見せる</h2>
+  <p>ある学生が外部サービスの管理画面に入れてしまった。『俺が見つけた証拠』として、管理画面のスクリーンショットを仲間内に見せたところ、画面には利用者の名前、メールアドレス、予約内容が映っていたので、一部モザイクのぼかしを入れた。</p>
   <div class="choices">
 <label><input type="radio" name="q5" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q5" value="注意が必要"><span>注意が必要</span></label>
@@ -189,14 +189,14 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、個人情報が二次流出します。発見者側は、管理画面へのアクセス自体、さらに個人情報の保存・共有について法的責任や処分リスクを負い得ます。証拠化のつもりでも、取得範囲を広げてはいけません。</div>
+  <div class="feedback">被害者側では、個人情報が二次流出します。発見者側は、管理画面へのアクセス自体、さらに個人情報の保存・共有について法的責任や処分リスクを負い得ます。モザイクをかけていたとしてもアルファベットのような簡単な文字だと復元できる可能性もあります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
 <section class="question" id="q6" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問6 / 20　5点</div>
   <h2>飲食店の公式モバイルオーダーをCLI化する</h2>
-  <p>友人と飲食店に行き、テーブルのQRコードからモバイルオーダー画面を開いた。開発者ツールで通信を観察したところ、注文APIらしきリクエストが見えた。あなたは同じリクエストを送れるCLIクライアントを作り、実際の店舗でそのCLIから注文しようとしている。</p>
+  <p>友人と飲食店に行き、テーブルのQRコードからモバイルオーダー画面を開いた。ブラウザの開発者ツールで通信を観察したところ、注文APIらしきリクエストが見えた。あなたは同じリクエストを送れるCLIクライアントを作り、実際の店舗でそのCLIから注文しようとしている。</p>
   <div class="choices">
 <label><input type="radio" name="q6" value="A"><span>自分が食べる注文なので問題ない</span></label>
 <label><input type="radio" name="q6" value="B"><span>技術的に同じ通信なら飲食店のモバイルオーダー画面と同じなので問題ない</span></label>
