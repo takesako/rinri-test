@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🛡️ Webエンジニアのための技術者倫理テスト 🚀</title>
+<title>Webエンジニアのための技術者倫理テスト</title>
 <style>
 :root {
   --bg:#f6f7fb; --card:#fff; --text:#172033; --muted:#5b6475; --line:#d9deea;
@@ -16,11 +16,26 @@ header .wrap, main { max-width:900px; margin:0 auto; }
 h1 { margin:0 0 8px; font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.3; }
 .lead { color:rgba(255,255,255,.9); margin:0; max-width:780px; }
 main { padding:24px 16px 48px; }
-.notice, .question, .result, .qrBox { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0; box-shadow:0 2px 10px rgba(20,30,60,.04); }
+.notice, .question, .result, .qrBox, .startBox { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0; box-shadow:0 2px 10px rgba(20,30,60,.04); }
 .notice { border-left:6px solid var(--accent); }
 .qrBox { text-align:center; border-left:6px solid var(--accent); }
 .qrBox img { width:min(220px,70vw); height:auto; display:block; margin:10px auto 4px; border:1px solid var(--line); border-radius:12px; background:white; }
 .qrBox p { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+.startBox {
+  text-align:center;
+  border-left:6px solid var(--ok);
+}
+.startBox h2 {
+  margin:0 0 8px;
+  font-size:1.45rem;
+}
+.startBtn {
+  margin-top:14px;
+  padding:14px 20px;
+  font-size:1.05rem;
+  background:linear-gradient(135deg,#027a48,#2446a6);
+}
+
 .progress { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:16px 0; font-weight:900; display:flex; justify-content:space-between; gap:12px; align-items:center; }
 .bar { height:10px; background:#e6eaf3; border-radius:999px; overflow:hidden; flex:1; }
 .bar span { display:block; width:0%; height:100%; background:var(--accent); border-radius:999px; transition:width .35s ease; }
@@ -50,6 +65,7 @@ button:disabled { opacity:.55; cursor:not-allowed; }
 .ng { color:var(--danger); }
 .warn { color:var(--warn); }
 .hidden { display:none; }
+.is-hidden { display:none !important; }
 .badge { display:inline-block; padding:3px 10px; border-radius:999px; font-size:.9rem; font-weight:900; background:var(--soft); color:var(--accent); }
 .scoreBig { font-size:2rem; font-weight:1000; margin:6px 0; }
 .small { color:var(--muted); font-size:.92rem; }
@@ -86,7 +102,13 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
     実在サービスで脆弱性らしき挙動を見つけた場合は、深追いせず、必要最小限の情報で運営者・管理者・IPAなどの適切な届出窓口に相談します。
   </section>
 
-  <div class="progress">
+  <section id="startBox" class="startBox">
+    <h2>あなたの倫理観をテストする</h2>
+    <p>Webサービスの脆弱性、APIの仕様の穴、AIエージェントによる自動化。<br>「できる」と「やってよい」の境界を、20問で確認しましょう。</p>
+    <button type="button" id="startBtn" class="startBtn">診断を開始する</button>
+  </section>
+
+  <div class="progress is-hidden">
     <div id="progressText">問1 / 20</div>
     <div class="bar"><span id="progressBar"></span></div>
   </div>
@@ -97,7 +119,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q1" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問1 / 20　5点</div>
   <h2>地域団体のWebサイトでXSSらしき挙動を見つけた</h2>
-  <p>学校とは関係ない地域団体のWebサイトで、検索欄にスクリプト風の文字列を入力したところ、画面にアラートが表示された。あなたは「XSS見つけた！」と思い、スクリーンショットをSNSに投稿し、団体名とURLも書こうとしている。</p>
+  <p>地域イベントの参加者募集ページで、会場名を検索するフォームに&lt;script&gt;alert(1);&lt;/script&gt;を入れたところ、ブラウザにアラートが表示された。ページには主催団体名、問い合わせ先、参加申込フォームへのリンクもある。あなたは「XSS見つけた！」と思い、スクリーンショット、団体名、URLをSNSに投稿しようとしている。</p>
   <div class="choices">
 <label><input type="radio" name="q1" value="A"><span>脆弱性を見つけたので社会貢献として公開してよい</span></label>
 <label><input type="radio" name="q1" value="B"><span>アラートだけなら実害がないので問題ない</span></label>
@@ -113,7 +135,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q2" data-type="judgement" data-answer="OK" data-points="5">
   <div class="meta">問2 / 20　5点</div>
   <h2>友人にDMで修正を促す</h2>
-  <p>友人が作ったWebアプリにSQLインジェクションがありそうだったので、友人にDMで『この入力でエラーが出た。もしかするとSQLインジェクションかもしれない。必要なら一緒に直そう』と伝えた。</p>
+  <p>友人が文化祭用に作った予約アプリを触っていたところ、入力欄に特殊な文字シングルクォート'を入れるとエラーが出た。SQLインジェクションの可能性があると思ったあなたは、公開チャットではなく友人にDMで『この入力でエラーが出た。もしかするとSQLインジェクションかもしれない。必要なら一緒に直そう』と伝えた。</p>
   <div class="choices">
 <label><input type="radio" name="q2" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q2" value="注意が必要"><span>注意が必要</span></label>
@@ -128,7 +150,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q3" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問3 / 20　5点</div>
   <h2>メニューIDを総当たりで列挙する</h2>
-  <p>公式UIでは見えないメニューを探すため、メニューIDを1から1000まで機械的に試して一覧を作った。</p>
+  <p>飲食店のモバイルオーダー画面では見えないメニューを探すため、メニューIDを1から1000まで機械的に試して一覧を作った。</p>
   <div class="choices">
 <label><input type="radio" name="q3" value="A"><span>見るだけなので問題ない</span></label>
 <label><input type="radio" name="q3" value="B"><span>一人でやるなら負荷は小さいので問題ない</span></label>
@@ -144,7 +166,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q4" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
   <div class="meta">問4 / 20　5点</div>
   <h2>公式ロゴを非公式ツールのREADMEに載せる</h2>
-  <p>非公式クライアントのGitHub READMEに、企業の公式ロゴを大きく載せ、『非公式だけど便利です』と説明した。</p>
+  <p>飲食店のモバイルオーダーを便利にする非公式ツールをAIエージェントを使って作ってGitHubで公開した。READMEの一番上に企業の公式ロゴを大きく載せ、『非公式だけど便利です』と説明したため、見る人によっては公式ツールのようにも見える。</p>
   <div class="choices">
 <label><input type="radio" name="q4" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q4" value="注意が必要"><span>注意が必要</span></label>
@@ -156,34 +178,14 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q5" data-type="multi" data-answer="A,D,E,G,H" data-points="5">
+<section class="question" id="q5" data-type="judgement" data-answer="NG" data-points="5">
   <div class="meta">問5 / 20　5点</div>
-  <h2>比較的適切な行動をすべて選ぶ</h2>
-  <p>次のうち、比較的適切な行動をすべて選びなさい。</p>
-  <div class="choices">
-<label><input type="checkbox" name="q5" value="A"><span>自分が管理していないサイトでは、深追い検証しない</span></label>
-<label><input type="checkbox" name="q5" value="B"><span>他人の個人情報が見えるかどうかを確認してから報告する</span></label>
-<label><input type="checkbox" name="q5" value="C"><span>脆弱性を見つけたら、対象URLと攻撃コードをSNSに投稿する</span></label>
-<label><input type="checkbox" name="q5" value="D"><span>まず運営者や管理者に、必要最小限の情報で報告する</span></label>
-<label><input type="checkbox" name="q5" value="E"><span>返事がない場合は、先生、専門家、IPAなどに相談する</span></label>
-<label><input type="checkbox" name="q5" value="F"><span>仲間内なら攻撃手順を共有してよい</span></label>
-<label><input type="checkbox" name="q5" value="G"><span>報告には、試した範囲と試していない範囲を書く</span></label>
-<label><input type="checkbox" name="q5" value="H"><span>学習はCTFや許可された検証環境で行う</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側への影響を最小化するには、深追いせず、適切な相手に最小限で報告します。発見者側も、試した範囲と試していない範囲を明確にすることで、過剰検証の疑いを避けやすくなります。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-
-<section class="question" id="q6" data-type="judgement" data-answer="NG" data-points="5">
-  <div class="meta">問6 / 20　5点</div>
   <h2>管理画面に入れた証拠を仲間内に見せる</h2>
-  <p>脆弱性を見つけた生徒が、『俺が見つけた証拠』として、管理画面に入れたスクリーンショットを仲間内に見せた。画面には利用者の名前やメールアドレスが映っていた。</p>
+  <p>ある学生が外部サービスの管理画面に入れてしまった。『俺が見つけた証拠』として、管理画面のスクリーンショットを仲間内に見せたところ、画面には利用者の名前、メールアドレス、予約内容が映っていた。</p>
   <div class="choices">
-<label><input type="radio" name="q6" value="OK"><span>OK</span></label>
-<label><input type="radio" name="q6" value="注意が必要"><span>注意が必要</span></label>
-<label><input type="radio" name="q6" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q5" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q5" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q5" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -191,30 +193,30 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q7" data-type="single" data-answer="C" data-points="5">
-  <div class="meta">問7 / 20　5点</div>
+<section class="question" id="q6" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問6 / 20　5点</div>
   <h2>飲食店の公式モバイルオーダーをCLI化する</h2>
-  <p>飲食店の公式モバイルオーダー画面を開発者ツールで観察し、同じリクエストを送れるCLIクライアントを作った。実店舗でそのCLIから注文しようとしている。</p>
+  <p>友人と飲食店に行き、テーブルのQRコードからモバイルオーダー画面を開いた。開発者ツールで通信を観察したところ、注文APIらしきリクエストが見えた。あなたは同じリクエストを送れるCLIクライアントを作り、実際の店舗でそのCLIから注文しようとしている。</p>
   <div class="choices">
-<label><input type="radio" name="q7" value="A"><span>自分が食べる注文なので問題ない</span></label>
-<label><input type="radio" name="q7" value="B"><span>技術的に同じ通信なら公式UIと同じなので問題ない</span></label>
-<label><input type="radio" name="q7" value="C"><span>他社の営業中の業務システムを無許可で操作するため、事前許諾なしでは危険</span></label>
-<label><input type="radio" name="q7" value="D"><span>GitHubで公開しなければ必ず問題ない</span></label>
+<label><input type="radio" name="q6" value="A"><span>自分が食べる注文なので問題ない</span></label>
+<label><input type="radio" name="q6" value="B"><span>技術的に同じ通信なら飲食店のモバイルオーダー画面と同じなので問題ない</span></label>
+<label><input type="radio" name="q6" value="C"><span>他社の営業中の業務システムを無許可で操作するため、事前許諾なしでは危険</span></label>
+<label><input type="radio" name="q6" value="D"><span>GitHubで公開しなければ必ず問題ない</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、店舗・厨房・会計・他の客に影響が出ます。発見者側は、公式導線を迂回して業務システムを操作したことで、利用規約違反、業務妨害、不正アクセス関連の疑いを招くリスクがあります。技術的にできることと、業務上許されることは別です。</div>
+  <div class="feedback">被害者側では、店舗・厨房・会計・他の客に影響が出ます。発見者側は、飲食店のモバイルオーダー画面の導線を迂回して業務システムを操作したことで、利用規約違反、業務妨害、不正アクセス関連の疑いを招くリスクがあります。技術的にできることと、業務上許されることは別です。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q8" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
-  <div class="meta">問8 / 20　5点</div>
+<section class="question" id="q7" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
+  <div class="meta">問7 / 20　5点</div>
   <h2>自分が管理していないサイトで何度もスクリプトを試す</h2>
-  <p>自分が管理していないWebサイトに、XSSがあるかもしれないと思い、検索欄に何度もスクリプト風の入力を試した。</p>
+  <p>市内の小さな飲食店のWebサイトで、検索欄の動きが気になった。あなたはXSSがあるかもしれないと思い、営業中の実在サイトに対して、何度もスクリプト風の入力を試した。</p>
   <div class="choices">
-<label><input type="radio" name="q8" value="OK"><span>OK</span></label>
-<label><input type="radio" name="q8" value="注意が必要"><span>注意が必要</span></label>
-<label><input type="radio" name="q8" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q7" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q7" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q7" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -222,15 +224,15 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q9" data-type="single" data-answer="C" data-points="5">
-  <div class="meta">問9 / 20　5点</div>
+<section class="question" id="q8" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問8 / 20　5点</div>
   <h2>店舗のQRトークンを別テーブルに使う</h2>
-  <p>自分のテーブルで読み取った注文用トークンの仕組みを理解したので、別テーブルのトークンでも注文できるか試そうとしている。</p>
+  <p>飲食店で自分のテーブルのQRコードを読み取り、URLに注文用トークンらしき文字列が含まれていることに気づいた。仕組みを理解したくなり、隣のテーブルのQRコードや別テーブルのトークンでも注文できるか試そうとしている。</p>
   <div class="choices">
-<label><input type="radio" name="q9" value="A"><span>仕組みの確認なので問題ない</span></label>
-<label><input type="radio" name="q9" value="B"><span>注文しなければ問題ない</span></label>
-<label><input type="radio" name="q9" value="C"><span>他人の注文権限を使う可能性があり、不正アクセスや業務妨害のリスクが高い</span></label>
-<label><input type="radio" name="q9" value="D"><span>友達のテーブルなら許可なしでも問題ない</span></label>
+<label><input type="radio" name="q8" value="A"><span>仕組みの確認なので問題ない</span></label>
+<label><input type="radio" name="q8" value="B"><span>注文しなければ問題ない</span></label>
+<label><input type="radio" name="q8" value="C"><span>他人の注文権限を使う可能性があり、不正アクセスや業務妨害のリスクが高い</span></label>
+<label><input type="radio" name="q8" value="D"><span>友達のテーブルなら許可なしでも問題ない</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -238,37 +240,15 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q10" data-type="multi" data-answer="A,B,C,D,E,F,G" data-points="5">
-  <div class="meta">問10 / 20　5点</div>
-  <h2>危険な共有になりうるものをすべて選ぶ</h2>
-  <p>次のうち、危険な共有になりうるものをすべて選びなさい。</p>
-  <div class="choices">
-<label><input type="checkbox" name="q10" value="A"><span>脆弱性のあるURL</span></label>
-<label><input type="checkbox" name="q10" value="B"><span>実際に動く攻撃コード</span></label>
-<label><input type="checkbox" name="q10" value="C"><span>管理画面に入れたスクリーンショット</span></label>
-<label><input type="checkbox" name="q10" value="D"><span>個人情報が映った証拠画像</span></label>
-<label><input type="checkbox" name="q10" value="E"><span>『このサイトはXSSできる』という投稿</span></label>
-<label><input type="checkbox" name="q10" value="F"><span>修正前の再現手順</span></label>
-<label><input type="checkbox" name="q10" value="G"><span>友人だけのDiscordへの検証方法の共有</span></label>
-<label><input type="checkbox" name="q10" value="H"><span>CTF環境での解説記事</span></label>
-<label><input type="checkbox" name="q10" value="I"><span>自分のローカル環境で作った脆弱アプリの教材</span></label>
-<label><input type="checkbox" name="q10" value="J"><span>運営者に送る最小限の再現情報</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、攻撃者に必要な情報がそろってしまいます。発見者側も、攻撃コードや修正前手順の共有により被害拡大へ関与したと評価されるリスクがあります。CTFや自作教材など、許可された環境とは分けて考えます。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-
-<section class="question" id="q11" data-type="single" data-answer="B" data-points="5">
-  <div class="meta">問11 / 20　5点</div>
+<section class="question" id="q9" data-type="single" data-answer="B" data-points="5">
+  <div class="meta">問9 / 20　5点</div>
   <h2>SQLインジェクションか確認するために深掘りする？</h2>
-  <p>予約サイトの入力欄に特殊な文字を入れるとエラーが出た。あなたはSQLインジェクションかもしれないと思い、他人の予約情報が見えるかどうか確認しようとしている。</p>
+  <p>地域の美容室の予約サイトで、名前欄に特殊な文字を入れたところ、データベースエラーらしき画面が出た。あなたはSQLインジェクションかもしれないと思い、さらに入力を変えて、他人の予約日時、氏名、電話番号が見えるかどうか確認しようとしている。</p>
   <div class="choices">
-<label><input type="radio" name="q11" value="A"><span>証拠を集めるためなので、他人の情報が見えるまで試してよい</span></label>
-<label><input type="radio" name="q11" value="B"><span>エラーが出た時点で深追いを止め、必要最小限の情報で報告する</span></label>
-<label><input type="radio" name="q11" value="C"><span>個人情報を保存しなければ問題ない</span></label>
-<label><input type="radio" name="q11" value="D"><span>サイト側の不備なので、調べる側には責任がない</span></label>
+<label><input type="radio" name="q9" value="A"><span>証拠を集めるためなので、他人の情報が見えるまで試してよい</span></label>
+<label><input type="radio" name="q9" value="B"><span>エラーが出た時点で深追いを止め、必要最小限の情報で報告する</span></label>
+<label><input type="radio" name="q9" value="C"><span>個人情報を保存しなければ問題ない</span></label>
+<label><input type="radio" name="q9" value="D"><span>サイト側の不備なので、調べる側には責任がない</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -276,14 +256,14 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q12" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
-  <div class="meta">問12 / 20　5点</div>
+<section class="question" id="q10" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
+  <div class="meta">問10 / 20　5点</div>
   <h2>返事がないので3日後にSNS公開する</h2>
-  <p>脆弱性らしきものを見つけて運営会社にメールしたが、返事がなかった。3日後に『このサイト危険です』とURLつきでSNSに投稿した。</p>
+  <p>イベント申込サイトで脆弱性らしき挙動を見つけ、問い合わせフォームから運営会社に連絡した。しかし3日たっても返事がなかった。あなたは不安になり、『このサイト危険です』とURLつきでSNSに投稿した。</p>
   <div class="choices">
-<label><input type="radio" name="q12" value="OK"><span>OK</span></label>
-<label><input type="radio" name="q12" value="注意が必要"><span>注意が必要</span></label>
-<label><input type="radio" name="q12" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q10" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q10" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q10" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -291,30 +271,30 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q13" data-type="single" data-answer="C" data-points="5">
-  <div class="meta">問13 / 20　5点</div>
+<section class="question" id="q11" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問11 / 20　5点</div>
   <h2>友人のアプリの脆弱性を全体チャットで指摘する</h2>
-  <p>学校の課題で作った友人のWebアプリにXSSがあることを見つけた。あなたは全体チャットに「このアプリ、XSSできる。これ入れてみ」と書き、実際に動く入力例も貼ろうとしている。</p>
+  <p>授業の課題発表で、友人が作った掲示板アプリをクラス全員に公開した。コメント欄に&lt;script&gt;alert(1);&lt;/script&gt;を入れると画面表示が崩れることに気づいた。あなたは全体チャットに「このアプリ、XSSできる。これ入れてみ」と書き、実際に動く入力例も貼ろうとしている。</p>
   <div class="choices">
-<label><input type="radio" name="q13" value="A"><span>学習目的なのでよい</span></label>
-<label><input type="radio" name="q13" value="B"><span>友人のアプリなので大きな問題ではない</span></label>
-<label><input type="radio" name="q13" value="C"><span>公開範囲が広すぎ、悪用やからかいを誘発するため不適切</span></label>
-<label><input type="radio" name="q13" value="D"><span>授業で習う内容なので全員に共有してよい</span></label>
+<label><input type="radio" name="q11" value="A"><span>学習目的なのでよい</span></label>
+<label><input type="radio" name="q11" value="B"><span>友人のアプリなので大きな問題ではない</span></label>
+<label><input type="radio" name="q11" value="C"><span>公開範囲が広すぎ、悪用やからかいを誘発するため不適切</span></label>
+<label><input type="radio" name="q11" value="D"><span>授業で習う内容なので全員に共有してよい</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、友人の作品が笑いものになったり、他の人に攻撃されたりする可能性があります。発見者側も、注意喚起ではなく攻撃手順の配布になれば責任を問われかねません。まず本人に個別に伝え、必要なら教員に相談します。</div>
+  <div class="feedback">被害者側では、友人の作品が笑いものになったり、他の人に攻撃されたりする可能性があります。発見者側も、注意喚起ではなく攻撃手順の配布になれば責任を問われかねません。まず本人に個別に伝え、必要なら管理者に相談します。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q14" data-type="judgement" data-answer="OK" data-points="5">
-  <div class="meta">問14 / 20　5点</div>
+<section class="question" id="q12" data-type="judgement" data-answer="OK" data-points="5">
+  <div class="meta">問12 / 20　5点</div>
   <h2>本番APIを使わずモックで再現する</h2>
-  <p>実店舗の注文APIは叩かず、ローカルのモックサーバーを作り、注文CLIやAIエージェント連携を学習用に再現した。</p>
+  <p>実店舗の注文APIは叩かず、ローカルPC上にモックサーバーを作った。架空のメニューと架空の注文番号だけを使い、注文CLIやAIエージェント連携を学習用に再現した。</p>
   <div class="choices">
-<label><input type="radio" name="q14" value="OK"><span>OK</span></label>
-<label><input type="radio" name="q14" value="注意が必要"><span>注意が必要</span></label>
-<label><input type="radio" name="q14" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q12" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q12" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q12" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -322,14 +302,14 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q15" data-type="judgement" data-answer="注意が必要" data-points="5">
-  <div class="meta">問15 / 20　5点</div>
+<section class="question" id="q13" data-type="judgement" data-answer="注意が必要" data-points="5">
+  <div class="meta">問13 / 20　5点</div>
   <h2>具体情報なしで『学校のシステムが脆弱』と投稿する</h2>
-  <p>生徒が『この学校のシステム、たぶん脆弱』とSNSに書いた。ただし、URL、攻撃手順、スクリーンショット、個人情報は出していない。</p>
+  <p>学生が、学内システムの挙動を見て不安になり、『この学校の提出システム、たぶん脆弱』とSNSに書いた。ただし、URL、攻撃手順、スクリーンショット、個人情報は出していない。</p>
   <div class="choices">
-<label><input type="radio" name="q15" value="OK"><span>OK</span></label>
-<label><input type="radio" name="q15" value="注意が必要"><span>注意が必要</span></label>
-<label><input type="radio" name="q15" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q13" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q13" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q13" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -337,15 +317,15 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q16" data-type="single" data-answer="C" data-points="5">
-  <div class="meta">問16 / 20　5点</div>
+<section class="question" id="q14" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問14 / 20　5点</div>
   <h2>AIエージェントに実店舗の注文権限を渡す</h2>
-  <p>自然言語で『甘いものを頼んで』と指示すると、AIエージェントが飲食店の注文APIを呼び出して実店舗に注文する仕組みを作った。</p>
+  <p>飲食店のテーブルで、あなたはAIエージェントに『甘いものを頼んで』と話しかけるだけで、飲食店の注文APIを呼び出して実店舗に注文する仕組みを作った。注文前の確認画面や上限設定はまだない。</p>
   <div class="choices">
-<label><input type="radio" name="q16" value="A"><span>AIが判断するので人間の責任は軽い</span></label>
-<label><input type="radio" name="q16" value="B"><span>自分のテーブルなら何をしてもよい</span></label>
-<label><input type="radio" name="q16" value="C"><span>誤注文・大量注文・リトライ暴走が現実の店舗業務に影響するため、明示的な許諾と安全設計が必要</span></label>
-<label><input type="radio" name="q16" value="D"><span>面白いデモなので公開すべき</span></label>
+<label><input type="radio" name="q14" value="A"><span>AIが判断するので人間の責任は軽い</span></label>
+<label><input type="radio" name="q14" value="B"><span>自分のテーブルなら何をしてもよい</span></label>
+<label><input type="radio" name="q14" value="C"><span>誤注文・大量注文・リトライ暴走が現実の店舗業務に影響するため、明示的な許諾と安全設計が必要</span></label>
+<label><input type="radio" name="q14" value="D"><span>面白いデモなので公開すべき</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -353,15 +333,15 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q17" data-type="single" data-answer="C" data-points="5">
-  <div class="meta">問17 / 20　5点</div>
+<section class="question" id="q15" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問15 / 20　5点</div>
   <h2>仲間内Discordなら共有してよい？</h2>
-  <p>あるWebサービスのログイン画面に脆弱性がありそうだと気づいた。仲のよい数人だけのDiscordに「これたぶん入れるぞ」とURLと試した入力例を共有しようとしている。</p>
+  <p>放課後、友人と使っている外部Webサービスのログイン画面で、エラー表示の出方が不自然なことに気づいた。あなたは『これ、たぶん突破できるかも』と思い、仲のよい数人だけのDiscordにURLと試した入力例を共有しようとしている。</p>
   <div class="choices">
-<label><input type="radio" name="q17" value="A"><span>公開SNSではなく仲間内なので問題ない</span></label>
-<label><input type="radio" name="q17" value="B"><span>悪用していないなら問題ない</span></label>
-<label><input type="radio" name="q17" value="C"><span>仲間内でも、攻撃方法の共有は悪用や拡散につながるため不適切</span></label>
-<label><input type="radio" name="q17" value="D"><span>セキュリティに詳しい人同士なら共有してよい</span></label>
+<label><input type="radio" name="q15" value="A"><span>公開SNSではなく仲間内なので問題ない</span></label>
+<label><input type="radio" name="q15" value="B"><span>悪用していないなら問題ない</span></label>
+<label><input type="radio" name="q15" value="C"><span>仲間内でも、攻撃方法の共有は悪用や拡散につながるため不適切</span></label>
+<label><input type="radio" name="q15" value="D"><span>セキュリティに詳しい人同士なら共有してよい</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -369,15 +349,15 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q18" data-type="single" data-answer="B" data-points="5">
-  <div class="meta">問18 / 20　5点</div>
+<section class="question" id="q16" data-type="single" data-answer="B" data-points="5">
+  <div class="meta">問16 / 20　5点</div>
   <h2>IDORの可能性を深追いせず報告する</h2>
-  <p>学校のシステムで、自分の提出物URLの数字部分を見て、他人の提出物も見えるかもしれないと気づいた。あなたは他人の番号を試さず、担当者に『IDORの可能性があります』と報告した。</p>
+  <p>授業で使う提出システムで、自分の提出物URLの末尾が `/submissions/1042` のような連番になっていることに気づいた。別の番号に変えると他人の提出物が見えるかもしれないと思ったが、あなたは他人の番号を試さず、担当者に『IDORの可能性があります。自分のURLだけで気づきました』と報告した。</p>
   <div class="choices">
-<label><input type="radio" name="q18" value="A"><span>他人の提出物が見えるか確認していないので不十分</span></label>
-<label><input type="radio" name="q18" value="B"><span>余計な検証をせず、可能性として報告しているので適切</span></label>
-<label><input type="radio" name="q18" value="C"><span>SNSで注意喚起すべき</span></label>
-<label><input type="radio" name="q18" value="D"><span>専門用語を使うのは偉そうなので不適切</span></label>
+<label><input type="radio" name="q16" value="A"><span>他人の提出物が見えるか確認していないので不十分</span></label>
+<label><input type="radio" name="q16" value="B"><span>余計な検証をせず、可能性として報告しているので適切</span></label>
+<label><input type="radio" name="q16" value="C"><span>SNSで注意喚起すべき</span></label>
+<label><input type="radio" name="q16" value="D"><span>専門用語を使うのは偉そうなので不適切</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -385,34 +365,76 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q19" data-type="judgement" data-answer="NG,注意が必要" data-points="5">
-  <div class="meta">問19 / 20　5点</div>
+<section class="question" id="q17" data-type="judgement" data-answer="NG,注意が必要" data-points="5">
+  <div class="meta">問17 / 20　5点</div>
   <h2>食品アレルギーや年齢確認のUIを迂回する</h2>
-  <p>公式注文画面ではアレルギー注意や年齢確認の表示が出るが、自作クライアントではそれらを省いて直接注文できるようにした。</p>
+  <p>飲食店のモバイルオーダー画面では、商品によってアレルギー注意や年齢確認の表示が出る。しかし自作クライアントでは、その確認画面を省いて直接注文APIを呼び出せるようにした。</p>
   <div class="choices">
-<label><input type="radio" name="q19" value="OK"><span>OK</span></label>
-<label><input type="radio" name="q19" value="注意が必要"><span>注意が必要</span></label>
-<label><input type="radio" name="q19" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q17" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q17" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q17" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、利用者の健康被害、店舗側の説明責任、年齢確認漏れなどが発生し得ます。発見者側も、公式UIの安全導線を迂回したことで、事故時の責任や利用規約違反を問われる可能性があります。安全確認は単なる飾りではありません。</div>
+  <div class="feedback">被害者側では、利用者の健康被害、店舗側の説明責任、年齢確認漏れなどが発生し得ます。発見者側も、飲食店のモバイルオーダー画面の安全導線を迂回したことで、事故時の責任や利用規約違反を問われる可能性があります。安全確認は単なる飾りではありません。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
-<section class="question" id="q20" data-type="single" data-answer="B" data-points="5">
-  <div class="meta">問20 / 20　5点</div>
+<section class="question" id="q18" data-type="single" data-answer="B" data-points="5">
+  <div class="meta">問18 / 20　5点</div>
   <h2>アクセス負荷だけを見て『問題ない』と判断する</h2>
-  <p>自作ツールは公式アプリと同じAPIを1回叩くだけなので、サーバー負荷はほぼ変わらない。だから問題ない、と判断した。</p>
+  <p>自作ツールは、飲食店のモバイルオーダー画面と同じ注文APIを1回叩くだけなので、サーバー負荷はほぼ変わらない。あなたは『負荷が同じなら問題ない』と判断したが、その注文は実際に厨房へ流れる。</p>
   <div class="choices">
-<label><input type="radio" name="q20" value="A"><span>サーバー負荷が同じなら問題ない</span></label>
-<label><input type="radio" name="q20" value="B"><span>負荷だけでなく、厨房・店員・他の客・問い合わせ対応など実世界の業務影響も考える必要がある</span></label>
-<label><input type="radio" name="q20" value="C"><span>クラウドなら負荷は無限に吸収できる</span></label>
-<label><input type="radio" name="q20" value="D"><span>AIが使えば効率化なので問題ない</span></label>
+<label><input type="radio" name="q18" value="A"><span>サーバー負荷が同じなら問題ない</span></label>
+<label><input type="radio" name="q18" value="B"><span>負荷だけでなく、厨房・店員・他の客・問い合わせ対応など実世界の業務影響も考える必要がある</span></label>
+<label><input type="radio" name="q18" value="C"><span>クラウドなら負荷は無限に吸収できる</span></label>
+<label><input type="radio" name="q18" value="D"><span>AIが使えば効率化なので問題ない</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
   <div class="feedback">被害者側では、厨房、店員、会計、他の客の時間が影響を受けます。発見者側も、サーバー負荷だけを根拠に安全だと主張しても、実際の業務妨害や誤注文の責任を免れられるとは限りません。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q19" data-type="multi" data-answer="A,D,E,G,H" data-points="5">
+  <div class="meta">問19 / 20　5点</div>
+  <h2>比較的適切な行動をすべて選ぶ</h2>
+  <p>次のうち、比較的適切な行動をすべて選びなさい。</p>
+  <div class="choices">
+<label><input type="checkbox" name="q19" value="A"><span>自分が管理していないサイトでは、深追い検証しない</span></label>
+<label><input type="checkbox" name="q19" value="B"><span>他人の個人情報が見えるかどうかを確認してから報告する</span></label>
+<label><input type="checkbox" name="q19" value="C"><span>脆弱性を見つけたら、対象URLと攻撃コードをSNSに投稿する</span></label>
+<label><input type="checkbox" name="q19" value="D"><span>まず運営者や管理者に、必要最小限の情報で報告する</span></label>
+<label><input type="checkbox" name="q19" value="E"><span>返事がない場合は、専門家、IPAなどに相談する</span></label>
+<label><input type="checkbox" name="q19" value="F"><span>仲間内なら攻撃手順を共有してよい</span></label>
+<label><input type="checkbox" name="q19" value="G"><span>報告には、試した範囲と試していない範囲を書く</span></label>
+<label><input type="checkbox" name="q19" value="H"><span>学習はCTFや許可された検証環境で行う</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側への影響を最小化するには、深追いせず、適切な相手に最小限で報告します。発見者側も、試した範囲と試していない範囲を明確にすることで、過剰検証の疑いを避けやすくなります。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q20" data-type="multi" data-answer="A,B,C,D,E,F,G" data-points="5">
+  <div class="meta">問20 / 20　5点</div>
+  <h2>危険な共有になりうるものをすべて選ぶ</h2>
+  <p>次のうち、危険な共有になりうるものをすべて選びなさい。</p>
+  <div class="choices">
+<label><input type="checkbox" name="q20" value="A"><span>脆弱性のあるURL</span></label>
+<label><input type="checkbox" name="q20" value="B"><span>実際に動く攻撃コード</span></label>
+<label><input type="checkbox" name="q20" value="C"><span>管理画面に入れたスクリーンショット</span></label>
+<label><input type="checkbox" name="q20" value="D"><span>個人情報が映った証拠画像</span></label>
+<label><input type="checkbox" name="q20" value="E"><span>『このサイトはXSSできる』という投稿</span></label>
+<label><input type="checkbox" name="q20" value="F"><span>修正前の再現手順</span></label>
+<label><input type="checkbox" name="q20" value="G"><span>友人だけのDiscordへの検証方法の共有</span></label>
+<label><input type="checkbox" name="q20" value="H"><span>CTF環境での解説記事</span></label>
+<label><input type="checkbox" name="q20" value="I"><span>自分のローカル環境で作った脆弱アプリの教材</span></label>
+<label><input type="checkbox" name="q20" value="J"><span>運営者に送る最小限の再現情報</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、攻撃者に必要な情報がそろってしまいます。発見者側も、攻撃コードや修正前手順の共有により被害拡大へ関与したと評価されるリスクがあります。CTFや自作教材など、許可された環境とは分けて考えます。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -441,14 +463,16 @@ function setProgress() {
   }
 }
 
-function showOnly(index) {
+function showOnly(index, shouldScroll = true) {
   const qs = questions();
   qs.forEach((q, i) => q.classList.toggle("active", i === index));
   current = index;
   setProgress();
-  setTimeout(() => {
-    if (qs[index]) qs[index].scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 30);
+  if (shouldScroll) {
+    setTimeout(() => {
+      if (qs[index]) qs[index].scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 30);
+  }
 }
 
 function getSelected(q) {
@@ -595,14 +619,31 @@ function finish() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const qs = questions();
+  qs.forEach(q => q.classList.remove("active"));
+
   document.querySelectorAll(".answerBtn").forEach(btn => {
     btn.addEventListener("click", () => answerQuestion(btn.closest(".question")));
   });
+
   document.querySelectorAll(".nextBtn").forEach(btn => {
     btn.addEventListener("click", () => goNext(btn.closest(".question")));
   });
-  showOnly(0);
+
+  const startBtn = document.getElementById("startBtn");
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      const startBox = document.getElementById("startBox");
+      const progress = document.querySelector(".progress");
+      if (startBox) startBox.classList.add("is-hidden");
+      if (progress) progress.classList.remove("is-hidden");
+      showOnly(0, true);
+    });
+  }
+
+  setProgress();
 });
+
 </script>
 </body>
 </html>
