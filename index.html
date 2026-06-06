@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Webエンジニアのための技術者倫理テスト</title>
 <style>
 :root {
@@ -118,7 +121,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 
   <section id="startBox" class="startBox">
     <h2>あなたの倫理観をテストする</h2>
-    <p>Webサービスの脆弱性、非公開APIを直接叩く、AIエージェントによる自動化。 「できる」と「やってよい」の境界を、20問で確認しましょう。</p>
+    <p>Webサービスの脆弱性、非公開APIを叩く、AIエージェントによる自動化。 「できる」と「やってよい」の境界を、20問で確認しましょう。</p>
     <button type="button" id="startBtn" class="startBtn">診断を開始する</button>
     <p class="small"><strong>所要時間の目安は5分です。</strong></p>
   </section>
@@ -665,6 +668,7 @@ function revealAllAnswersByShortcut() {
     <div class="scoreBig">全20問の問題と解答</div>
     <p>ショートカットキーで、採点せずに全問題・正解・解説を表示しています。</p>
     <div class="reviewActions">
+      <a class="githubBtn" href="https://x.com/hashtag/%E6%8A%80%E8%A1%93%E8%80%85%E5%80%AB%E7%90%86%E3%83%86%E3%82%B9%E3%83%88?src=hashtag_click&f=live" target="_blank" rel="noopener noreferrer">みんなの診断結果をXで見る</a>
       <a class="githubBtn" href="https://github.com/takesako/rinri-test" target="_blank" rel="noopener noreferrer">問題文や解答の修正提案はGitHubへ</a>
     </div>
     <div id="reviewBox" class="reviewBox" aria-live="polite">${buildReviewHtml()}</div>
@@ -719,6 +723,7 @@ function finish() {
     <p class="small">全20問×5点＝満点100点、合格は90点以上です。</p>
     <div class="reviewActions">
       <a class="shareBtn githubBtn" href="${shareUrl}" target="_blank" rel="noopener noreferrer">Xで結果を投稿して拡散する</a>
+      <a class="githubBtn" href="https://x.com/hashtag/%E6%8A%80%E8%A1%93%E8%80%85%E5%80%AB%E7%90%86%E3%83%86%E3%82%B9%E3%83%88?src=hashtag_click&f=live" target="_blank" rel="noopener noreferrer">みんなの診断結果をXで見る</a>
       <button type="button" id="reviewBtn" class="reviewBtn">すべての問題と解答を見直す</button>
       <a class="githubBtn" href="https://github.com/takesako/rinri-test" target="_blank" rel="noopener noreferrer">問題文や解答の修正提案はGitHubへ</a>
     </div>
