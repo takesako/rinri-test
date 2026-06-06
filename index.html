@@ -226,7 +226,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q7" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
   <div class="meta">問7 / 20　5点</div>
   <h2>自分が管理していないサイトで何度もスクリプトを試す</h2>
-  <p>市内の小さな飲食店のWebサイトで、検索欄の動きが気になった。あなたはXSSがあるかもしれないと思い、営業中の実在サイトに対して、何度もスクリプト風の入力を試した。</p>
+  <p>市内の小さな飲食店のWebサイトで、検索欄の動きが気になった。あなたはXSSがあるかもしれないと思い、営業中の実在サイトに対して、何度も攻撃可能性のある検証コードの入力を試した。</p>
   <div class="choices">
 <label><input type="radio" name="q7" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q7" value="注意が必要"><span>注意が必要</span></label>
@@ -273,7 +273,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q10" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
   <div class="meta">問10 / 20　5点</div>
   <h2>返事がないので3日後にSNS公開する</h2>
-  <p>イベント申込サイトで脆弱性らしき挙動を見つけ、問い合わせフォームから運営会社に連絡した。しかし3日たっても返事がなかった。あなたは不安になり、『このサイト危険です』とURLつきでSNSに投稿した。</p>
+  <p>イベント申込サイトで脆弱性らしき挙動を見つけ、問い合わせフォームから運営会社に連絡した。しかし3日たっても返事がなかった。あなたは不安になり、緊急で対応が必要と考え、注意喚起のため『このサイト危険です』とURLつきでSNSに投稿した。</p>
   <div class="choices">
 <label><input type="radio" name="q10" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q10" value="注意が必要"><span>注意が必要</span></label>
@@ -319,7 +319,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q13" data-type="judgement" data-answer="注意が必要" data-points="5">
   <div class="meta">問13 / 20　5点</div>
   <h2>具体情報なしで『学校のシステムが脆弱』と投稿する</h2>
-  <p>学生が、学内システムの挙動を見て不安になり、『この学校の提出システム、たぶん脆弱』とSNSに書いた。ただし、URL、攻撃手順、スクリーンショット、個人情報は出していない。</p>
+  <p>学生が、学内システムの挙動を見て不安になり、『この学校の出欠確認システム、たぶん脆弱』とSNSに書いた。ただし、URL、攻撃手順、スクリーンショット、個人情報は出していない。</p>
   <div class="choices">
 <label><input type="radio" name="q13" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q13" value="注意が必要"><span>注意が必要</span></label>
@@ -359,7 +359,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、数人のうち誰かが試すだけで被害が広がります。発見者側も、仲間内共有が実質的な攻撃手順の配布と見なされるリスクがあります。秘密の共有は安全策ではありません。</div>
+  <div class="feedback">被害者側では、数人のうち誰かが試すだけで被害が広がります。また誰かがスクリーンショットを外部に切り取って公開するかもしれません。発見者側も、仲間内共有が実質的な攻撃手順の配布と見なされるリスクがあります。秘密の共有は安全策ではありません。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -371,11 +371,11 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <label><input type="radio" name="q16" value="A"><span>他人の提出物が見えるか確認していないので不十分</span></label>
 <label><input type="radio" name="q16" value="B"><span>余計な検証をせず、可能性として報告しているので適切</span></label>
 <label><input type="radio" name="q16" value="C"><span>SNSで注意喚起すべき</span></label>
-<label><input type="radio" name="q16" value="D"><span>専門用語を使うのは偉そうなので不適切</span></label>
+<label><input type="radio" name="q16" value="D"><span>IDORという専門用語を使うのは偉そうなので不適切</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、提出物・成績・個人情報が見られる可能性があります。発見者側は、他人の情報を実際に見に行かないことで法的・倫理的リスクを抑えています。『どこまで確認し、どこから先は試していないか』を明確に報告するのがよい対応です。</div>
+  <div class="feedback">被害者側では、提出物・成績・個人情報が見られる可能性があります。IDOR（Insecure Direct Object Reference）とは、URLやパラメータのIDを書き換えるだけで、本来アクセス権のない別ユーザーのデータや機密ファイルが閲覧できてしまう脆弱性のことです。発見者側は、他人の情報を実際に見に行かないことで法的・倫理的リスクを抑えています。『どこまで確認し、どこから先は試していないか』を明確に報告するのがよい対応です。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -397,7 +397,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q18" data-type="single" data-answer="B" data-points="5">
   <div class="meta">問18 / 20　5点</div>
   <h2>アクセス負荷だけを見て『問題ない』と判断する</h2>
-  <p>自作ツールは、飲食店のモバイルオーダー画面と同じ注文APIを1回叩くだけなので、サーバー負荷はほぼ変わらない。あなたは『負荷が同じなら問題ない』と判断したが、その注文は実際に厨房へ流れる。</p>
+  <p>自作ツールは、飲食店のモバイルオーダー画面と同じ注文APIを1回叩くだけなので、サーバー負荷はほぼ変わらない。あなたは『負荷が同じなら問題ない』と判断したが、その注文は実際に厨房へ流れることが想定される。</p>
   <div class="choices">
 <label><input type="radio" name="q18" value="A"><span>サーバー負荷が同じなら問題ない</span></label>
 <label><input type="radio" name="q18" value="B"><span>負荷だけでなく、厨房・店員・他の客・問い合わせ対応など実世界の業務影響も考える必要がある</span></label>
