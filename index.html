@@ -118,8 +118,9 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 
   <section id="startBox" class="startBox">
     <h2>あなたの倫理観をテストする</h2>
-    <p>Webサービスの脆弱性、APIの仕様の穴、AIエージェントによる自動化。<br>「できる」と「やってよい」の境界を、20問で確認しましょう。<br><strong>所要時間の目安は5分です。</strong></p>
+    <p>Webサービスの脆弱性、非公開APIを直接叩く、AIエージェントによる自動化。 「できる」と「やってよい」の境界を、20問で確認しましょう。</p>
     <button type="button" id="startBtn" class="startBtn">診断を開始する</button>
+    <p class="small"><strong>所要時間の目安は5分です。</strong></p>
   </section>
 
   <div class="progress is-hidden">
@@ -142,7 +143,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、地域団体の担当者が突然の攻撃・問い合わせ・信用低下に対応せざるを得なくなります。発見者側も、対象URLや再現情報を広めたことで被害拡大に関与したと評価されるリスクがあります。まず運営者やIPAなどの適切な届出窓口に相談します。</div>
+  <div class="feedback">被害者側では、地域イベントの担当者が突然の攻撃・問い合わせ・信用低下に対応せざるを得なくなります。発見者側も、対象URLや再現情報を広めたことで被害拡大に関与したと評価されるリスクがあります。まず運営者やIPAなどの適切な届出窓口に相談します。XSS（クロスサイトスクリプティング）とは、Webページに悪意あるスクリプトを埋め込まれ、閲覧者のブラウザ上で意図しない処理が実行される脆弱性です。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -157,7 +158,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側への被害拡大を避け、本人に修正の機会を与えています。発見者側も、公開で晒さず、必要最小限の情報で伝えているため適切です。ただし、他人のデータが見えるかどうかを勝手に試してはいけません。</div>
+  <div class="feedback">被害者側への被害拡大を避け、本人に修正の機会を与えています。発見者側も、公開で晒さず、必要最小限の情報で伝えているため適切です。ただし、他人のデータが見えるかどうかを勝手に試してはいけません。認証回避、他人のID・パスワードの利用、アクセス制御を越える検証に進むと、不正アクセス禁止法上の不正アクセス行為と評価されるリスクがあります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -173,7 +174,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、廃番商品、テスト用ID、内部状態が露出したり、監視・障害対応の負担が発生します。発見者側も、列挙アクセスが業務システムに使用目的外の動作をさせたと評価されると、電子計算機損壊等業務妨害などの問題に発展する可能性があります。</div>
+  <div class="feedback">被害者側では、廃番商品、テスト用ID、内部状態が露出したり、監視・障害対応の負担が発生します。発見者側も、列挙アクセスが業務システムに使用目的外の動作をさせたと評価されると、電子計算機損壊等業務妨害などの問題に発展する可能性があります。岡崎市立中央図書館、いわゆるLibrahack事件では、自動アクセスが図書館サイトの障害や警察対応に発展し、技術者コミュニティでも大きな議論になりました。善意や便利化の目的であっても、本番環境への機械的アクセスは慎重に扱う必要があります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -188,14 +189,14 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、公式ツールと誤認され、問い合わせやトラブルが企業に向かう可能性があります。発見者側は、商標権侵害、不正競争、利用規約違反、信用毀損のリスクを負い得ます。名称の説明とロゴ利用は分けて考える必要があります。</div>
+  <div class="feedback">被害者側では、公式ツールと誤認され、問い合わせやトラブルが企業に向かう可能性があります。発見者側は、商標権侵害、不正競争、利用規約違反、信用毀損のリスクを負い得ます。名称の説明とロゴ利用は分けて考える必要があります。ロゴやブランドの利用ルールは企業ごとに異なるため、利用してよい範囲を相手側の広報・ブランド管理窓口に確認する必要があります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
 <section class="question" id="q5" data-type="judgement" data-answer="NG" data-points="5">
   <div class="meta">問5 / 20　5点</div>
   <h2>管理画面が見えた証拠を仲間内に見せる</h2>
-  <p>ある学生が外部サービスの管理画面に入れてしまった。『俺が見つけた証拠』として、管理画面のスクリーンショットを仲間内に見せたところ、画面には利用者の名前、メールアドレス、予約内容が映っていたので、一部モザイクのぼかしを入れた。</p>
+  <p>いろいろ試した結果、外部サービスの管理画面にアクセスすることができてしまった。『俺が見つけた証拠』として、管理画面のスクリーンショットを仲間内に見せたところ、画面には利用者の名前、メールアドレス、予約内容が映っていた。</p>
   <div class="choices">
 <label><input type="radio" name="q5" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q5" value="注意が必要"><span>注意が必要</span></label>
@@ -203,13 +204,13 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、個人情報が二次流出します。発見者側は、管理画面へのアクセス自体、さらに個人情報の保存・共有について法的責任や処分リスクを負い得ます。モザイクをかけていたとしてもアルファベットのような簡単な文字だと復元できる可能性もあります。</div>
+  <div class="feedback">被害者側では、仲間内の誰かが個人情報が流出していることを公言する可能性があり二次流出につながります。発見者側は、管理画面へのアクセス自体、さらに個人情報の保存・共有について法的責任や処分リスクを負い得ます。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
 <section class="question" id="q6" data-type="single" data-answer="C" data-points="5">
   <div class="meta">問6 / 20　5点</div>
-  <h2>飲食店の公式モバイルオーダーをライブラリ・代替クライアント・CLI化する</h2>
+  <h2>飲食店の公式モバイルオーダーを解析しCLI化する</h2>
   <p>友人と飲食店に行き、テーブルのQRコードからモバイルオーダー画面を開いた。ブラウザの開発者ツールで通信を観察したところ、注文APIらしきリクエストが見えた。あなたは同じリクエストを送れるライブラリ・代替クライアント・CLIを作り、実際の店舗でその代替手段から注文しようとしている。</p>
   <div class="choices">
 <label><input type="radio" name="q6" value="A"><span>自分が食べる注文なので問題ない</span></label>
@@ -226,7 +227,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q7" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
   <div class="meta">問7 / 20　5点</div>
   <h2>自分が管理していないサイトで何度もスクリプトを試す</h2>
-  <p>市内の小さな飲食店のWebサイトで、検索欄の動きが気になった。あなたはXSSがあるかもしれないと思い、営業中の実在サイトに対して、何度も攻撃可能性のある検証コードの入力を試した。</p>
+  <p>地元の飲食店のWebサイトの動きが気になり、もしかしたらXSSがあるかもしれないと思い、営業中の実在サイトに対して、何度も攻撃可能性のある検証コードの入力を試した。</p>
   <div class="choices">
 <label><input type="radio" name="q7" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q7" value="注意が必要"><span>注意が必要</span></label>
@@ -266,7 +267,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、氏名・電話番号・予約内容などが漏れる可能性があります。発見者側も、確認のつもりで他人の情報にアクセスすると、不正アクセスやプライバシー侵害、業務妨害の問題になり得ます。疑いの段階で止めるのが安全です。</div>
+  <div class="feedback">被害者側では、氏名・電話番号・予約内容などが漏れる可能性があります。発見者側も、確認のつもりで他人の情報にアクセスすると、不正アクセスやプライバシー侵害、業務妨害の問題になり得ます。疑いの段階で止めるのが安全です。SQLインジェクションとは、入力欄などにSQL文として解釈される文字列を混入させ、本来想定されていないデータベース操作を引き起こす脆弱性のことです。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -633,6 +634,44 @@ function buildReviewHtml() {
   `;
 }
 
+function attachReviewToggle(reviewBtn, reviewBox) {
+  if (!reviewBtn || !reviewBox) return;
+  reviewBtn.addEventListener("click", () => {
+    const willShow = reviewBox.classList.contains("hidden");
+    if (willShow && !reviewBox.innerHTML.trim()) {
+      reviewBox.innerHTML = buildReviewHtml();
+    }
+    reviewBox.classList.toggle("hidden", !willShow);
+    reviewBtn.textContent = willShow ? "見直しを閉じる" : "すべての問題と解答を見直す";
+    if (willShow) {
+      reviewBox.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+
+function revealAllAnswersByShortcut() {
+  questions().forEach(q => q.classList.remove("active"));
+  const startBox = document.getElementById("startBox");
+  const progress = document.querySelector(".progress");
+  if (startBox) startBox.classList.add("is-hidden");
+  if (progress) progress.classList.remove("is-hidden");
+  current = totalQuestions;
+  setProgress();
+
+  const result = document.getElementById("result");
+  result.classList.remove("hidden");
+  result.innerHTML = `
+    <div class="badge">🔓 裏コマンド：解答一覧</div>
+    <div class="scoreBig">全20問の問題と解答</div>
+    <p>ショートカットキーで、採点せずに全問題・正解・解説を表示しています。</p>
+    <div class="reviewActions">
+      <a class="githubBtn" href="https://github.com/takesako/rinri-test" target="_blank" rel="noopener noreferrer">問題文や解答の修正提案はGitHubへ</a>
+    </div>
+    <div id="reviewBox" class="reviewBox" aria-live="polite">${buildReviewHtml()}</div>
+  `;
+  result.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function finish() {
   questions().forEach(q => q.classList.remove("active"));
   current = totalQuestions;
@@ -642,27 +681,27 @@ function finish() {
   let badge, level, advice;
 
   if (total >= 100) {
-    badge = "完全防御の守護者";
+    badge = "🛡️ 完全防御の守護者";
     level = "満点合格";
     advice = "技術力だけでなく、相手の業務・利用者・公開範囲まで見えています。もう勝手に本番を叩かないオーラが出ています。";
   } else if (total >= 95) {
-    badge = "冷静沈着セキュリティ侍";
+    badge = "⚔️ 冷静沈着セキュリティ侍";
     level = "高得点合格";
     advice = "かなり良い判断です。仕様の穴、脆弱性、AI自動化、実世界への影響をバランスよく見られています。";
   } else if (total >= 90) {
-    badge = "責任あるWebエンジニア";
+    badge = "✅ 責任あるWebエンジニア";
     level = "合格";
     advice = "合格です。見つけたあとに深追いしない、晒さない、必要最小限で適切に報告するという基本姿勢ができています。";
   } else if (total >= 75) {
-    badge = "うっかり公開しがち見習い";
+    badge = "⚠️ うっかり公開しがち見習い";
     level = "惜しい";
     advice = "もう少しで合格です。『仲間内だけ』『すごいから拡散』『本番で少しだけ確認』が危険になる場面を復習してください。";
-  } else if (total >= 50) {
-    badge = "alert(1)でテンション上がりすぎ勢";
+  } else if (total >= 60) {
+    badge = "🚨 alert(1)でテンション上がりすぎ勢";
     level = "要再学習";
     advice = "技術的に気づけることと、倫理的に扱えることは別です。対象URL、攻撃コード、非公式クライアント、AI自動化の公開リスクを確認しましょう。";
   } else {
-    badge = "それ、善意でもインシデント予備軍";
+    badge = "🔥 それ、善意でもインシデント予備軍";
     level = "重点再学習";
     advice = "実在サービスでの深追い検証、他人の情報確認、本番APIの無許可操作、SNS公開は重大な被害につながります。まず許可された環境と責任ある報告の区別から復習してください。";
   }
@@ -686,21 +725,7 @@ function finish() {
     <div id="reviewBox" class="reviewBox hidden" aria-live="polite"></div>
   `;
 
-  const reviewBtn = document.getElementById("reviewBtn");
-  const reviewBox = document.getElementById("reviewBox");
-  if (reviewBtn && reviewBox) {
-    reviewBtn.addEventListener("click", () => {
-      const willShow = reviewBox.classList.contains("hidden");
-      if (willShow && !reviewBox.innerHTML.trim()) {
-        reviewBox.innerHTML = buildReviewHtml();
-      }
-      reviewBox.classList.toggle("hidden", !willShow);
-      reviewBtn.textContent = willShow ? "見直しを閉じる" : "すべての問題と解答を見直す";
-      if (willShow) {
-        reviewBox.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  }
+  attachReviewToggle(document.getElementById("reviewBtn"), document.getElementById("reviewBox"));
 
   result.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -727,6 +752,13 @@ document.addEventListener("DOMContentLoaded", () => {
       showOnly(0, true);
     });
   }
+
+  document.addEventListener("keydown", event => {
+    if (event.ctrlKey && event.altKey && event.key.toLowerCase() === "r") {
+      event.preventDefault();
+      revealAllAnswersByShortcut();
+    }
+  });
 
   setProgress();
 });
