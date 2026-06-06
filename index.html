@@ -3,51 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>脆弱性発見時の技術者倫理テスト</title>
+<title>🛡️ Webエンジニアのための技術者倫理テスト 🚀</title>
 <style>
 :root {
   --bg:#f6f7fb; --card:#fff; --text:#172033; --muted:#5b6475; --line:#d9deea;
   --accent:#2446a6; --danger:#b42318; --warn:#9a6700; --ok:#027a48; --soft:#eef2ff;
 }
 * { box-sizing:border-box; }
-body {
-  margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg); color:var(--text); line-height:1.7;
-}
-header {
-  background:linear-gradient(135deg,#172033,#2446a6); color:white; padding:32px 20px;
-}
+body { margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+header { background:linear-gradient(135deg,#172033,#2446a6); color:white; padding:32px 20px; }
 header .wrap, main { max-width:900px; margin:0 auto; }
 h1 { margin:0 0 8px; font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.3; }
 .lead { color:rgba(255,255,255,.9); margin:0; max-width:780px; }
 main { padding:24px 16px 48px; }
-.notice, .question, .result, .qrBox {
-  background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0;
-  box-shadow:0 2px 10px rgba(20,30,60,.04);
-}
+.notice, .question, .result, .qrBox { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0; box-shadow:0 2px 10px rgba(20,30,60,.04); }
 .notice { border-left:6px solid var(--accent); }
-.qrBox {
-  text-align:center;
-  border-left:6px solid var(--accent);
-}
-.qrBox img {
-  width:min(220px, 70vw);
-  height:auto;
-  display:block;
-  margin:10px auto 4px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:white;
-}
-.qrBox p {
-  margin:6px 0 0;
-  color:var(--muted);
-  font-size:.95rem;
-}
-.progress {
-  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:16px 0;
-  font-weight:900; display:flex; justify-content:space-between; gap:12px; align-items:center;
-}
+.qrBox { text-align:center; border-left:6px solid var(--accent); }
+.qrBox img { width:min(220px,70vw); height:auto; display:block; margin:10px auto 4px; border:1px solid var(--line); border-radius:12px; background:white; }
+.qrBox p { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+.progress { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:16px 0; font-weight:900; display:flex; justify-content:space-between; gap:12px; align-items:center; }
 .bar { height:10px; background:#e6eaf3; border-radius:999px; overflow:hidden; flex:1; }
 .bar span { display:block; width:0%; height:100%; background:var(--accent); border-radius:999px; transition:width .35s ease; }
 .question { display:none; position:relative; overflow:hidden; }
@@ -55,94 +29,56 @@ main { padding:24px 16px 48px; }
 @keyframes slideIn { from {opacity:0; transform:translateY(16px)} to {opacity:1; transform:translateY(0)} }
 .question.correct { border-left:7px solid var(--ok); animation:correctPulse .65s ease-out; }
 .question.incorrect { border-left:7px solid var(--danger); animation:wrongShake .42s ease-out; }
-@keyframes correctPulse {
-  0% { transform:scale(1); box-shadow:0 0 0 rgba(2,122,72,0); }
-  45% { transform:scale(1.012); box-shadow:0 0 0 10px rgba(2,122,72,.13); }
-  100% { transform:scale(1); box-shadow:0 2px 10px rgba(20,30,60,.04); }
-}
-@keyframes wrongShake {
-  0%,100% { transform:translateX(0); }
-  20% { transform:translateX(-8px); }
-  40% { transform:translateX(8px); }
-  60% { transform:translateX(-5px); }
-  80% { transform:translateX(5px); }
-}
+@keyframes correctPulse { 0% { transform:scale(1); box-shadow:0 0 0 rgba(2,122,72,0); } 45% { transform:scale(1.012); box-shadow:0 0 0 10px rgba(2,122,72,.13); } 100% { transform:scale(1); box-shadow:0 2px 10px rgba(20,30,60,.04); } }
+@keyframes wrongShake { 0%,100% { transform:translateX(0); } 20% { transform:translateX(-8px); } 40% { transform:translateX(8px); } 60% { transform:translateX(-5px); } 80% { transform:translateX(5px); } }
 .meta { color:var(--muted); font-size:.92rem; margin-bottom:8px; }
 .question h2 { margin:0 0 12px; font-size:1.35rem; line-height:1.4; }
-.choices label {
-  display:block; margin:8px 0; padding:11px 12px; border:1px solid var(--line); border-radius:11px;
-  cursor:pointer; background:#fbfcff;
-}
+.choices label { display:block; margin:8px 0; padding:11px 12px; border:1px solid var(--line); border-radius:11px; cursor:pointer; background:#fbfcff; }
 .choices label:hover { background:var(--soft); }
 .choices input { margin-right:8px; transform:translateY(1px); }
 .choices input:disabled ~ span, .choices label.locked { opacity:.7; cursor:not-allowed; }
-button {
-  border:0; border-radius:11px; padding:12px 16px; margin-top:12px; font-weight:900; cursor:pointer;
-  background:var(--accent); color:white; font-size:1rem;
-}
+button { border:0; border-radius:11px; padding:12px 16px; margin-top:12px; font-weight:900; cursor:pointer; background:var(--accent); color:white; font-size:1rem; }
 button:disabled { opacity:.55; cursor:not-allowed; }
 .answerBtn { background:#172033; }
-.nextBtn {
-  display:none;
-  background:var(--accent);
-}
-.nextBtn.show {
-  display:inline-block;
-}
-.miniResult {
-  display:none; margin-top:12px; padding:12px; border-radius:11px; font-weight:900; border:1px solid var(--line);
-  background:#f8fafc;
-}
+.nextBtn { display:none; background:var(--accent); }
+.nextBtn.show { display:inline-block; }
+.miniResult { display:none; margin-top:12px; padding:12px; border-radius:11px; font-weight:900; border:1px solid var(--line); background:#f8fafc; }
 .miniResult.show { display:block; }
-.feedback {
-  display:none; margin-top:12px; padding:12px; border-radius:11px; border:1px dashed var(--line); background:#f8fafc;
-}
+.feedback { display:none; margin-top:12px; padding:12px; border-radius:11px; border:1px dashed var(--line); background:#f8fafc; }
 .feedback.show { display:block; }
 .ok { color:var(--ok); }
 .ng { color:var(--danger); }
 .warn { color:var(--warn); }
 .hidden { display:none; }
-.badge {
-  display:inline-block; padding:3px 10px; border-radius:999px; font-size:.9rem; font-weight:900;
-  background:var(--soft); color:var(--accent);
-}
+.badge { display:inline-block; padding:3px 10px; border-radius:999px; font-size:.9rem; font-weight:900; background:var(--soft); color:var(--accent); }
 .scoreBig { font-size:2rem; font-weight:1000; margin:6px 0; }
 .small { color:var(--muted); font-size:.92rem; }
 code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
-.effectOverlay {
-  position:fixed; inset:0; pointer-events:none; display:grid; place-items:center; z-index:999; opacity:0;
-}
+.effectOverlay { position:fixed; inset:0; pointer-events:none; display:grid; place-items:center; z-index:999; opacity:0; }
 .effectOverlay.show { animation:overlayFade 1.05s ease-out; }
-.effectText {
-  padding:20px 28px; border-radius:20px; color:white; font-size:clamp(1.6rem,5vw,3.5rem);
-  font-weight:1000; letter-spacing:.04em; text-align:center; transform:rotate(-3deg);
-  text-shadow:0 4px 18px rgba(0,0,0,.35); box-shadow:0 18px 60px rgba(0,0,0,.28);
-}
+.effectText { padding:20px 28px; border-radius:20px; color:white; font-size:clamp(1.6rem,5vw,3.5rem); font-weight:1000; letter-spacing:.04em; text-align:center; transform:rotate(-3deg); text-shadow:0 4px 18px rgba(0,0,0,.35); box-shadow:0 18px 60px rgba(0,0,0,.28); }
 .effectOverlay.correctFx .effectText { background:linear-gradient(135deg,#027a48,#12b76a); }
 .effectOverlay.wrongFx .effectText { background:linear-gradient(135deg,#b42318,#f04438); }
-@keyframes overlayFade {
-  0% { opacity:0; transform:scale(.92); }
-  18% { opacity:1; transform:scale(1.03); }
-  72% { opacity:1; transform:scale(1); }
-  100% { opacity:0; transform:scale(1.08); }
-}
-.confetti {
-  position:fixed; width:10px; height:16px; top:-20px; left:50%; pointer-events:none; z-index:1000;
-  animation:fall 1.1s linear forwards;
-}
-@keyframes fall {
-  to { transform:translate(var(--dx),105vh) rotate(720deg); opacity:0; }
-}
+@keyframes overlayFade { 0% { opacity:0; transform:scale(.92); } 18% { opacity:1; transform:scale(1.03); } 72% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:scale(1.08); } }
+.confetti { position:fixed; width:10px; height:16px; top:-20px; left:50%; pointer-events:none; z-index:1000; animation:fall 1.1s linear forwards; }
+@keyframes fall { to { transform:translate(var(--dx),105vh) rotate(720deg); opacity:0; } }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <h1>脆弱性発見時の技術者倫理テスト</h1>
-    <p class="lead">脆弱性を見つけたときに、誰に・どこまで・どの順番で伝えるべきかを診断します。各問10点、100点以上で合格です。</p>
+    <h1>🛡️ Webエンジニアのための技術者倫理テスト 🚀</h1>
+    <p class="lead">Webサービスの脆弱性を発見したり、APIの仕様の穴を見つけて、AIエージェントで自動化できることに気づいたとき、誰に・どこまで・どの順番で公開して伝えるべきか、あなたの技術者倫理を試します。全20問×5点＝満点100点、合格は90点以上です。</p>
   </div>
 </header>
 <main>
+  <section class="qrBox">
+    <strong>スマートフォンからアクセス</strong>
+    <img src="6b094c71d89217a367b8a25f470b113782c7a7be.png" alt="Webエンジニアのための技術者倫理テストのQRコード">
+    <p>QRコードを読み取って、このテストにアクセスできます。</p>
+  </section>
+
+
   <section class="notice">
     <strong>注意：</strong>
     このテストは、実在するWebサイトへの検証をすすめるものではありません。
@@ -150,170 +86,342 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
     実在サービスで脆弱性らしき挙動を見つけた場合は、深追いせず、必要最小限の情報で運営者・管理者・IPAなどの適切な届出窓口に相談します。
   </section>
 
-  <section class="qrBox">
-    <strong>スマートフォンからアクセス</strong>
-    <img src="https://qr.quel.jp/tmp/6b094c71d89217a367b8a25f470b113782c7a7be.png" alt="脆弱性発見時の技術者倫理テストのQRコード">
-    <p>QRコードを読み取って、このテストにアクセスできます。</p>
-  </section>
-
   <div class="progress">
-    <div id="progressText">問1 / 12</div>
+    <div id="progressText">問1 / 20</div>
     <div class="bar"><span id="progressBar"></span></div>
   </div>
 
   <div id="effectOverlay" class="effectOverlay"><div class="effectText"></div></div>
 
   
-<section class="question" id="q1" data-type="single" data-answer="C" data-points="10">
-  <div class="meta">問1 / 12　10点</div>
+<section class="question" id="q1" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問1 / 20　5点</div>
   <h2>地域団体のWebサイトでXSSらしき挙動を見つけた</h2>
-  <p>ある高校生Aが、学校とは関係ない地域団体のWebサイトで、検索欄に <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> と入力したところ、画面にアラートが表示された。Aは「XSS見つけた！」と思い、スクリーンショットをXに投稿し、団体名とURLも書いた。</p>
+  <p>学校とは関係ない地域団体のWebサイトで、検索欄にスクリプト風の文字列を入力したところ、画面にアラートが表示された。あなたは「XSS見つけた！」と思い、スクリーンショットをSNSに投稿し、団体名とURLも書こうとしている。</p>
   <div class="choices">
-    <label><input type="radio" name="q1" value="A"><span>脆弱性を見つけたので社会貢献である</span></label><label><input type="radio" name="q1" value="B"><span>実害を出していないので問題ない</span></label><label><input type="radio" name="q1" value="C"><span>公開によって第三者に攻撃方法を知らせる可能性があり、不適切</span></label><label><input type="radio" name="q1" value="D"><span>alertを出しただけなら攻撃ではないので、自由に公開してよい</span></label>
+<label><input type="radio" name="q1" value="A"><span>脆弱性を見つけたので社会貢献として公開してよい</span></label>
+<label><input type="radio" name="q1" value="B"><span>アラートだけなら実害がないので問題ない</span></label>
+<label><input type="radio" name="q1" value="C"><span>第三者に攻撃対象と手がかりを知らせる可能性があるため、公開せず適切な窓口に相談する</span></label>
+<label><input type="radio" name="q1" value="D"><span>技術的に簡単なものなので、むしろ教材として公開すべき</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：C。alert(1) だけなら被害が小さく見えても、対象名・URL・再現方法を公開すると、第三者が悪用する可能性があります。まず運営者、IPAなどの適切な届出窓口に相談します。</div>
+  <div class="feedback">被害者側では、地域団体の担当者が突然の攻撃・問い合わせ・信用低下に対応せざるを得なくなります。発見者側も、対象URLや再現情報を広めたことで被害拡大に関与したと評価されるリスクがあります。まず運営者やIPAなどの適切な届出窓口に相談します。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
-<section class="question" id="q2" data-type="single" data-answer="B" data-points="10">
-  <div class="meta">問2 / 12　10点</div>
-  <h2>SQLインジェクションか確認するために深掘りする？</h2>
-  <p>生徒Bは、ある店の予約サイトで <code>' OR '1'='1</code> のような文字列を入力したところ、エラー画面が表示された。Bは「SQLインジェクションかもしれない」と思い、さらに別の文字列を試して、他人の予約情報が見えるか確認しようとした。</p>
-  <div class="choices">
-    <label><input type="radio" name="q2" value="A"><span>脆弱性の証拠を集めるためなので、他人の情報が見えるまで試してよい</span></label><label><input type="radio" name="q2" value="B"><span>エラーが出た時点で検証を止め、必要最小限の情報で報告する</span></label><label><input type="radio" name="q2" value="C"><span>個人情報をコピーしなければ問題ない</span></label><label><input type="radio" name="q2" value="D"><span>店のサイトが弱いのが悪いので、調べる側に責任はない</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：B。他人の予約情報・氏名・電話番号・メールアドレスなどにアクセスすると、確認のつもりでも被害を発生させます。深追いせず、日時・URL・入力内容・画面概要など必要最小限で報告します。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q3" data-type="single" data-answer="C" data-points="10">
-  <div class="meta">問3 / 12　10点</div>
-  <h2>友人のアプリの脆弱性を全体チャットで指摘する</h2>
-  <p>生徒Cは、学校の課題で作った友人のWebアプリにXSSがあることを見つけた。Cは全体チャットに「〇〇のアプリ、XSSできる。これ入れてみ」と書き、実際に動くコードも貼った。</p>
-  <div class="choices">
-    <label><input type="radio" name="q3" value="A"><span>学習目的なのでよい</span></label><label><input type="radio" name="q3" value="B"><span>友人のアプリなので大きな問題ではない</span></label><label><input type="radio" name="q3" value="C"><span>脆弱性の指摘としては必要以上に公開範囲が広く、悪用を誘発する</span></label><label><input type="radio" name="q3" value="D"><span>XSSは授業で習う内容なので、全員に共有してよい</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：C。学習目的でも、実在の友人作品と攻撃コードを全体に貼る必要はありません。まず本人に個別連絡し、授業共有するなら安全な練習環境で扱います。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q4" data-type="single" data-answer="C" data-points="10">
-  <div class="meta">問4 / 12　10点</div>
-  <h2>仲間内Discordなら共有してよい？</h2>
-  <p>生徒Dは、あるWebサービスのログイン画面に脆弱性がありそうだと気づいた。Dは仲のよい数人だけのDiscordに「これたぶん入れるぞ」とURLと試した入力例を共有した。</p>
-  <div class="choices">
-    <label><input type="radio" name="q4" value="A"><span>公開SNSではなく仲間内なので問題ない</span></label><label><input type="radio" name="q4" value="B"><span>悪用していないなら問題ない</span></label><label><input type="radio" name="q4" value="C"><span>仲間内でも、攻撃方法の共有は悪用や拡散につながるため不適切</span></label><label><input type="radio" name="q4" value="D"><span>セキュリティに詳しい人同士なら共有してよい</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：C。「こっそり共有」は安全ではありません。誰かが試す、スクリーンショットを撮る、別の場所へ流すなど二次被害が起きます。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q5" data-type="single" data-answer="B" data-points="10">
-  <div class="meta">問5 / 12　10点</div>
-  <h2>IDORの可能性を深追いせず報告する</h2>
-  <p>生徒Eは、学校のシステムに不具合を見つけた。URLの数字を変えると、他の生徒の提出物が見える可能性がある。Eは自分の提出物のURLだけで確認し、他人の番号は試さず、先生に「IDORの可能性があります」と報告した。</p>
-  <div class="choices">
-    <label><input type="radio" name="q5" value="A"><span>他人の提出物が見えるか確認していないので、報告として不十分</span></label><label><input type="radio" name="q5" value="B"><span>余計な検証をせず、可能性として報告しているので適切</span></label><label><input type="radio" name="q5" value="C"><span>先生に言う前にSNSで注意喚起すべき</span></label><label><input type="radio" name="q5" value="D"><span>IDORという専門用語を使っているので、偉そうでよくない</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：B。他人のデータにアクセスしない範囲で、可能性として報告しています。「どこまで確認し、どこから先は試していないか」を明確にするのが重要です。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q6" data-type="judgement" data-answer="注意が必要,NG" data-points="10">
-  <div class="meta">問6 / 12　10点</div>
-  <h2>自分が管理していないサイトで何度もスクリプトを試す</h2>
-  <p>自分が管理していないWebサイトに、XSSがあるかもしれないと思い、検索欄に何度もスクリプトを入力して試した。</p>
-  <div class="choices">
-    <label><input type="radio" name="q6" value="OK"><span>OK</span></label><label><input type="radio" name="q6" value="注意が必要"><span>注意が必要</span></label><label><input type="radio" name="q6" value="NG"><span>NG</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">模範：注意が必要、場合によってはNG。許可された環境でないなら検証は最小限にすべきです。何度も試すと、ログ汚染、負荷、他者への影響、攻撃と誤認されるリスクがあります。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q7" data-type="judgement" data-answer="注意が必要,NG" data-points="10">
-  <div class="meta">問7 / 12　10点</div>
-  <h2>返事がないので3日後にSNS公開する</h2>
-  <p>脆弱性を見つけたので、サービス運営会社にメールした。しかし返事がなかったため、3日後に「このサイト危険です」とURLつきでSNSに投稿した。</p>
-  <div class="choices">
-    <label><input type="radio" name="q7" value="OK"><span>OK</span></label><label><input type="radio" name="q7" value="注意が必要"><span>注意が必要</span></label><label><input type="radio" name="q7" value="NG"><span>NG</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">模範：NGに近い注意が必要。返信がないからといって、すぐ公開すると被害が広がる可能性があります。別の公式窓口、先生、専門家、IPAなどに相談して段階を踏みます。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q8" data-type="judgement" data-answer="OK" data-points="10">
-  <div class="meta">問8 / 12　10点</div>
+
+<section class="question" id="q2" data-type="judgement" data-answer="OK" data-points="5">
+  <div class="meta">問2 / 20　5点</div>
   <h2>友人にDMで修正を促す</h2>
-  <p>友人が作ったWebアプリにSQLインジェクションがありそうだったので、友人にDMで「この入力でエラーが出た。もしかするとSQLインジェクションかもしれない。必要なら一緒に直そう」と伝えた。</p>
+  <p>友人が作ったWebアプリにSQLインジェクションがありそうだったので、友人にDMで『この入力でエラーが出た。もしかするとSQLインジェクションかもしれない。必要なら一緒に直そう』と伝えた。</p>
   <div class="choices">
-    <label><input type="radio" name="q8" value="OK"><span>OK</span></label><label><input type="radio" name="q8" value="注意が必要"><span>注意が必要</span></label><label><input type="radio" name="q8" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q2" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q2" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q2" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">模範：OK。公開で晒さず、本人に個別に伝え、修正につなげようとしています。ただし、他人のデータが見えるかどうかを勝手に試してはいけません。</div>
+  <div class="feedback">被害者側への被害拡大を避け、本人に修正の機会を与えています。発見者側も、公開で晒さず、必要最小限の情報で伝えているため適切です。ただし、他人のデータが見えるかどうかを勝手に試してはいけません。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
-<section class="question" id="q9" data-type="judgement" data-answer="NG" data-points="10">
-  <div class="meta">問9 / 12　10点</div>
-  <h2>管理画面に入れた証拠を仲間内に見せる</h2>
-  <p>脆弱性を見つけた生徒が、「俺が見つけた証拠」として、管理画面に入れたスクリーンショットを仲間内に見せた。画面には利用者の名前やメールアドレスが映っていた。</p>
+
+<section class="question" id="q3" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問3 / 20　5点</div>
+  <h2>メニューIDを総当たりで列挙する</h2>
+  <p>公式UIでは見えないメニューを探すため、メニューIDを1から1000まで機械的に試して一覧を作った。</p>
   <div class="choices">
-    <label><input type="radio" name="q9" value="OK"><span>OK</span></label><label><input type="radio" name="q9" value="注意が必要"><span>注意が必要</span></label><label><input type="radio" name="q9" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q3" value="A"><span>見るだけなので問題ない</span></label>
+<label><input type="radio" name="q3" value="B"><span>一人でやるなら負荷は小さいので問題ない</span></label>
+<label><input type="radio" name="q3" value="C"><span>本番環境への列挙的アクセスは、想定外の負荷や情報露出につながるため不適切</span></label>
+<label><input type="radio" name="q3" value="D"><span>番号が連番なら試されても仕方ない</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">模範：NG。管理画面に入ること自体が重大です。さらに利用者情報を見せることで二次被害が発生しています。証拠のつもりでも個人情報や秘密情報を取得・保存・共有してはいけません。</div>
+  <div class="feedback">被害者側では、廃番商品、テスト用ID、内部状態が露出したり、監視・障害対応の負担が発生します。発見者側も、列挙アクセスが業務システムに使用目的外の動作をさせたと評価されると、電子計算機損壊等業務妨害などの問題に発展する可能性があります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
-<section class="question" id="q10" data-type="judgement" data-answer="注意が必要" data-points="10">
-  <div class="meta">問10 / 12　10点</div>
-  <h2>具体情報なしで「学校のシステムが脆弱」と投稿する</h2>
-  <p>生徒が「この学校のシステム、たぶん脆弱」とSNSに書いた。ただし、URL、攻撃手順、スクリーンショット、個人情報は出していない。</p>
+
+<section class="question" id="q4" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
+  <div class="meta">問4 / 20　5点</div>
+  <h2>公式ロゴを非公式ツールのREADMEに載せる</h2>
+  <p>非公式クライアントのGitHub READMEに、企業の公式ロゴを大きく載せ、『非公式だけど便利です』と説明した。</p>
   <div class="choices">
-    <label><input type="radio" name="q10" value="OK"><span>OK</span></label><label><input type="radio" name="q10" value="注意が必要"><span>注意が必要</span></label><label><input type="radio" name="q10" value="NG"><span>NG</span></label>
+<label><input type="radio" name="q4" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q4" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q4" value="NG"><span>NG</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">模範：注意が必要。具体的な攻撃情報を出していなくても、不安、信用低下、野次馬的な攻撃を招く可能性があります。まず学校の担当者や先生に報告します。</div>
+  <div class="feedback">被害者側では、公式ツールと誤認され、問い合わせやトラブルが企業に向かう可能性があります。発見者側は、商標権侵害、不正競争、利用規約違反、信用毀損のリスクを負い得ます。名称の説明とロゴ利用は分けて考える必要があります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
-<section class="question" id="q11" data-type="multi" data-answer="A,B,C,D,E,F,G" data-points="10">
-  <div class="meta">問11 / 12　10点</div>
-  <h2>危険な共有になりうるものをすべて選ぶ</h2>
-  <p>次のうち、危険な共有になりうるものをすべて選びなさい。</p>
-  <div class="choices">
-    <label><input type="checkbox" name="q11" value="A"><span>脆弱性のあるURL</span></label><label><input type="checkbox" name="q11" value="B"><span>実際に動く攻撃コード</span></label><label><input type="checkbox" name="q11" value="C"><span>管理画面に入れたスクリーンショット</span></label><label><input type="checkbox" name="q11" value="D"><span>個人情報が映った証拠画像</span></label><label><input type="checkbox" name="q11" value="E"><span>「このサイトはXSSできる」という投稿</span></label><label><input type="checkbox" name="q11" value="F"><span>修正前の再現手順</span></label><label><input type="checkbox" name="q11" value="G"><span>友人だけのDiscordへの検証方法の共有</span></label><label><input type="checkbox" name="q11" value="H"><span>CTF環境での解説記事</span></label><label><input type="checkbox" name="q11" value="I"><span>自分のローカル環境で作った脆弱アプリの教材</span></label><label><input type="checkbox" name="q11" value="J"><span>運営者に送る最小限の再現情報</span></label>
-  </div>
-  <button type="button" class="answerBtn">この問題に回答する</button>
-  <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：A、B、C、D、E、F、G。危険なのは「誰がそれを見たら悪用できるか」です。CTFや自作教材は許可された環境なら学習として適切になり得ます。運営者への最小限の報告も適切です。</div>
-  <button type="button" class="nextBtn">次の問題へ</button>
-</section>
-<section class="question" id="q12" data-type="multi" data-answer="A,D,E,G,H" data-points="10">
-  <div class="meta">問12 / 12　10点</div>
+
+<section class="question" id="q5" data-type="multi" data-answer="A,D,E,G,H" data-points="5">
+  <div class="meta">問5 / 20　5点</div>
   <h2>比較的適切な行動をすべて選ぶ</h2>
   <p>次のうち、比較的適切な行動をすべて選びなさい。</p>
   <div class="choices">
-    <label><input type="checkbox" name="q12" value="A"><span>自分が管理していないサイトでは、深追い検証しない</span></label><label><input type="checkbox" name="q12" value="B"><span>他人の個人情報が見えるかどうかを確認してから報告する</span></label><label><input type="checkbox" name="q12" value="C"><span>脆弱性を見つけたら、対象URLと攻撃コードをSNSに投稿する</span></label><label><input type="checkbox" name="q12" value="D"><span>まず運営者や管理者に、必要最小限の情報で報告する</span></label><label><input type="checkbox" name="q12" value="E"><span>返事がない場合は、先生、専門家、IPAなどに相談する</span></label><label><input type="checkbox" name="q12" value="F"><span>仲間内なら攻撃手順を共有してよい</span></label><label><input type="checkbox" name="q12" value="G"><span>報告には、試した範囲と試していない範囲を書く</span></label><label><input type="checkbox" name="q12" value="H"><span>学習はCTFや許可された検証環境で行う</span></label>
+<label><input type="checkbox" name="q5" value="A"><span>自分が管理していないサイトでは、深追い検証しない</span></label>
+<label><input type="checkbox" name="q5" value="B"><span>他人の個人情報が見えるかどうかを確認してから報告する</span></label>
+<label><input type="checkbox" name="q5" value="C"><span>脆弱性を見つけたら、対象URLと攻撃コードをSNSに投稿する</span></label>
+<label><input type="checkbox" name="q5" value="D"><span>まず運営者や管理者に、必要最小限の情報で報告する</span></label>
+<label><input type="checkbox" name="q5" value="E"><span>返事がない場合は、先生、専門家、IPAなどに相談する</span></label>
+<label><input type="checkbox" name="q5" value="F"><span>仲間内なら攻撃手順を共有してよい</span></label>
+<label><input type="checkbox" name="q5" value="G"><span>報告には、試した範囲と試していない範囲を書く</span></label>
+<label><input type="checkbox" name="q5" value="H"><span>学習はCTFや許可された検証環境で行う</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">正解：A、D、E、G、H。深追いしない、必要最小限で報告する、適切な相談先を使う、試した範囲を明確にする、許可された環境で学ぶ、という判断が重要です。</div>
+  <div class="feedback">被害者側への影響を最小化するには、深追いせず、適切な相手に最小限で報告します。発見者側も、試した範囲と試していない範囲を明確にすることで、過剰検証の疑いを避けやすくなります。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
+
+<section class="question" id="q6" data-type="judgement" data-answer="NG" data-points="5">
+  <div class="meta">問6 / 20　5点</div>
+  <h2>管理画面に入れた証拠を仲間内に見せる</h2>
+  <p>脆弱性を見つけた生徒が、『俺が見つけた証拠』として、管理画面に入れたスクリーンショットを仲間内に見せた。画面には利用者の名前やメールアドレスが映っていた。</p>
+  <div class="choices">
+<label><input type="radio" name="q6" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q6" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q6" value="NG"><span>NG</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、個人情報が二次流出します。発見者側は、管理画面へのアクセス自体、さらに個人情報の保存・共有について法的責任や処分リスクを負い得ます。証拠化のつもりでも、取得範囲を広げてはいけません。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q7" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問7 / 20　5点</div>
+  <h2>飲食店の公式モバイルオーダーをCLI化する</h2>
+  <p>飲食店の公式モバイルオーダー画面を開発者ツールで観察し、同じリクエストを送れるCLIクライアントを作った。実店舗でそのCLIから注文しようとしている。</p>
+  <div class="choices">
+<label><input type="radio" name="q7" value="A"><span>自分が食べる注文なので問題ない</span></label>
+<label><input type="radio" name="q7" value="B"><span>技術的に同じ通信なら公式UIと同じなので問題ない</span></label>
+<label><input type="radio" name="q7" value="C"><span>他社の営業中の業務システムを無許可で操作するため、事前許諾なしでは危険</span></label>
+<label><input type="radio" name="q7" value="D"><span>GitHubで公開しなければ必ず問題ない</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、店舗・厨房・会計・他の客に影響が出ます。発見者側は、公式導線を迂回して業務システムを操作したことで、利用規約違反、業務妨害、不正アクセス関連の疑いを招くリスクがあります。技術的にできることと、業務上許されることは別です。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q8" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
+  <div class="meta">問8 / 20　5点</div>
+  <h2>自分が管理していないサイトで何度もスクリプトを試す</h2>
+  <p>自分が管理していないWebサイトに、XSSがあるかもしれないと思い、検索欄に何度もスクリプト風の入力を試した。</p>
+  <div class="choices">
+<label><input type="radio" name="q8" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q8" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q8" value="NG"><span>NG</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、ログ汚染、アラート監視、障害調査など余計な対応が発生します。発見者側も、検証の範囲を超えると攻撃的行為と見なされるおそれがあります。練習はCTFや許可された環境で行うべきです。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q9" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問9 / 20　5点</div>
+  <h2>店舗のQRトークンを別テーブルに使う</h2>
+  <p>自分のテーブルで読み取った注文用トークンの仕組みを理解したので、別テーブルのトークンでも注文できるか試そうとしている。</p>
+  <div class="choices">
+<label><input type="radio" name="q9" value="A"><span>仕組みの確認なので問題ない</span></label>
+<label><input type="radio" name="q9" value="B"><span>注文しなければ問題ない</span></label>
+<label><input type="radio" name="q9" value="C"><span>他人の注文権限を使う可能性があり、不正アクセスや業務妨害のリスクが高い</span></label>
+<label><input type="radio" name="q9" value="D"><span>友達のテーブルなら許可なしでも問題ない</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、他の客にいたずら注文や会計トラブルが発生します。発見者側は、他人に割り当てられた識別情報・権限を使ったと評価されれば、不正アクセス禁止法や業務妨害の問題になり得ます。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q10" data-type="multi" data-answer="A,B,C,D,E,F,G" data-points="5">
+  <div class="meta">問10 / 20　5点</div>
+  <h2>危険な共有になりうるものをすべて選ぶ</h2>
+  <p>次のうち、危険な共有になりうるものをすべて選びなさい。</p>
+  <div class="choices">
+<label><input type="checkbox" name="q10" value="A"><span>脆弱性のあるURL</span></label>
+<label><input type="checkbox" name="q10" value="B"><span>実際に動く攻撃コード</span></label>
+<label><input type="checkbox" name="q10" value="C"><span>管理画面に入れたスクリーンショット</span></label>
+<label><input type="checkbox" name="q10" value="D"><span>個人情報が映った証拠画像</span></label>
+<label><input type="checkbox" name="q10" value="E"><span>『このサイトはXSSできる』という投稿</span></label>
+<label><input type="checkbox" name="q10" value="F"><span>修正前の再現手順</span></label>
+<label><input type="checkbox" name="q10" value="G"><span>友人だけのDiscordへの検証方法の共有</span></label>
+<label><input type="checkbox" name="q10" value="H"><span>CTF環境での解説記事</span></label>
+<label><input type="checkbox" name="q10" value="I"><span>自分のローカル環境で作った脆弱アプリの教材</span></label>
+<label><input type="checkbox" name="q10" value="J"><span>運営者に送る最小限の再現情報</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、攻撃者に必要な情報がそろってしまいます。発見者側も、攻撃コードや修正前手順の共有により被害拡大へ関与したと評価されるリスクがあります。CTFや自作教材など、許可された環境とは分けて考えます。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q11" data-type="single" data-answer="B" data-points="5">
+  <div class="meta">問11 / 20　5点</div>
+  <h2>SQLインジェクションか確認するために深掘りする？</h2>
+  <p>予約サイトの入力欄に特殊な文字を入れるとエラーが出た。あなたはSQLインジェクションかもしれないと思い、他人の予約情報が見えるかどうか確認しようとしている。</p>
+  <div class="choices">
+<label><input type="radio" name="q11" value="A"><span>証拠を集めるためなので、他人の情報が見えるまで試してよい</span></label>
+<label><input type="radio" name="q11" value="B"><span>エラーが出た時点で深追いを止め、必要最小限の情報で報告する</span></label>
+<label><input type="radio" name="q11" value="C"><span>個人情報を保存しなければ問題ない</span></label>
+<label><input type="radio" name="q11" value="D"><span>サイト側の不備なので、調べる側には責任がない</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、氏名・電話番号・予約内容などが漏れる可能性があります。発見者側も、確認のつもりで他人の情報にアクセスすると、不正アクセスやプライバシー侵害、業務妨害の問題になり得ます。疑いの段階で止めるのが安全です。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q12" data-type="judgement" data-answer="注意が必要,NG" data-points="5">
+  <div class="meta">問12 / 20　5点</div>
+  <h2>返事がないので3日後にSNS公開する</h2>
+  <p>脆弱性らしきものを見つけて運営会社にメールしたが、返事がなかった。3日後に『このサイト危険です』とURLつきでSNSに投稿した。</p>
+  <div class="choices">
+<label><input type="radio" name="q12" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q12" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q12" value="NG"><span>NG</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、修正前に攻撃が集中する可能性があります。発見者側も、危険を知らせるつもりが、攻撃対象の宣伝になり得ます。返信がない場合は、別の公式窓口、IPAなどの適切な届出窓口、信頼できる専門家に相談します。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q13" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問13 / 20　5点</div>
+  <h2>友人のアプリの脆弱性を全体チャットで指摘する</h2>
+  <p>学校の課題で作った友人のWebアプリにXSSがあることを見つけた。あなたは全体チャットに「このアプリ、XSSできる。これ入れてみ」と書き、実際に動く入力例も貼ろうとしている。</p>
+  <div class="choices">
+<label><input type="radio" name="q13" value="A"><span>学習目的なのでよい</span></label>
+<label><input type="radio" name="q13" value="B"><span>友人のアプリなので大きな問題ではない</span></label>
+<label><input type="radio" name="q13" value="C"><span>公開範囲が広すぎ、悪用やからかいを誘発するため不適切</span></label>
+<label><input type="radio" name="q13" value="D"><span>授業で習う内容なので全員に共有してよい</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、友人の作品が笑いものになったり、他の人に攻撃されたりする可能性があります。発見者側も、注意喚起ではなく攻撃手順の配布になれば責任を問われかねません。まず本人に個別に伝え、必要なら教員に相談します。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q14" data-type="judgement" data-answer="OK" data-points="5">
+  <div class="meta">問14 / 20　5点</div>
+  <h2>本番APIを使わずモックで再現する</h2>
+  <p>実店舗の注文APIは叩かず、ローカルのモックサーバーを作り、注文CLIやAIエージェント連携を学習用に再現した。</p>
+  <div class="choices">
+<label><input type="radio" name="q14" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q14" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q14" value="NG"><span>NG</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側の実システムには影響しません。発見者側も、学習・研究として安全な形に寄せています。ただし、実在企業のロゴ、実エンドポイント、実トークン、誤認される表現は避けるべきです。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q15" data-type="judgement" data-answer="注意が必要" data-points="5">
+  <div class="meta">問15 / 20　5点</div>
+  <h2>具体情報なしで『学校のシステムが脆弱』と投稿する</h2>
+  <p>生徒が『この学校のシステム、たぶん脆弱』とSNSに書いた。ただし、URL、攻撃手順、スクリーンショット、個人情報は出していない。</p>
+  <div class="choices">
+<label><input type="radio" name="q15" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q15" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q15" value="NG"><span>NG</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、根拠不明の不安や信用低下、野次馬的アクセスが発生します。発見者側も、名誉・信用を損なう発信として問題になる可能性があります。まず管理者へ非公開で報告するべきです。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q16" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問16 / 20　5点</div>
+  <h2>AIエージェントに実店舗の注文権限を渡す</h2>
+  <p>自然言語で『甘いものを頼んで』と指示すると、AIエージェントが飲食店の注文APIを呼び出して実店舗に注文する仕組みを作った。</p>
+  <div class="choices">
+<label><input type="radio" name="q16" value="A"><span>AIが判断するので人間の責任は軽い</span></label>
+<label><input type="radio" name="q16" value="B"><span>自分のテーブルなら何をしてもよい</span></label>
+<label><input type="radio" name="q16" value="C"><span>誤注文・大量注文・リトライ暴走が現実の店舗業務に影響するため、明示的な許諾と安全設計が必要</span></label>
+<label><input type="radio" name="q16" value="D"><span>面白いデモなので公開すべき</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、厨房や店員が誤注文・大量注文に対応し、他の客の体験も悪化します。発見者側は、悪意がなくても実世界に損害を出せば責任を問われます。AIエージェントに現実操作をさせる場合、許諾、上限、確認画面、停止機構が必要です。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q17" data-type="single" data-answer="C" data-points="5">
+  <div class="meta">問17 / 20　5点</div>
+  <h2>仲間内Discordなら共有してよい？</h2>
+  <p>あるWebサービスのログイン画面に脆弱性がありそうだと気づいた。仲のよい数人だけのDiscordに「これたぶん入れるぞ」とURLと試した入力例を共有しようとしている。</p>
+  <div class="choices">
+<label><input type="radio" name="q17" value="A"><span>公開SNSではなく仲間内なので問題ない</span></label>
+<label><input type="radio" name="q17" value="B"><span>悪用していないなら問題ない</span></label>
+<label><input type="radio" name="q17" value="C"><span>仲間内でも、攻撃方法の共有は悪用や拡散につながるため不適切</span></label>
+<label><input type="radio" name="q17" value="D"><span>セキュリティに詳しい人同士なら共有してよい</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、数人のうち誰かが試すだけで被害が広がります。発見者側も、仲間内共有が実質的な攻撃手順の配布と見なされるリスクがあります。秘密の共有は安全策ではありません。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q18" data-type="single" data-answer="B" data-points="5">
+  <div class="meta">問18 / 20　5点</div>
+  <h2>IDORの可能性を深追いせず報告する</h2>
+  <p>学校のシステムで、自分の提出物URLの数字部分を見て、他人の提出物も見えるかもしれないと気づいた。あなたは他人の番号を試さず、担当者に『IDORの可能性があります』と報告した。</p>
+  <div class="choices">
+<label><input type="radio" name="q18" value="A"><span>他人の提出物が見えるか確認していないので不十分</span></label>
+<label><input type="radio" name="q18" value="B"><span>余計な検証をせず、可能性として報告しているので適切</span></label>
+<label><input type="radio" name="q18" value="C"><span>SNSで注意喚起すべき</span></label>
+<label><input type="radio" name="q18" value="D"><span>専門用語を使うのは偉そうなので不適切</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、提出物・成績・個人情報が見られる可能性があります。発見者側は、他人の情報を実際に見に行かないことで法的・倫理的リスクを抑えています。『どこまで確認し、どこから先は試していないか』を明確に報告するのがよい対応です。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q19" data-type="judgement" data-answer="NG,注意が必要" data-points="5">
+  <div class="meta">問19 / 20　5点</div>
+  <h2>食品アレルギーや年齢確認のUIを迂回する</h2>
+  <p>公式注文画面ではアレルギー注意や年齢確認の表示が出るが、自作クライアントではそれらを省いて直接注文できるようにした。</p>
+  <div class="choices">
+<label><input type="radio" name="q19" value="OK"><span>OK</span></label>
+<label><input type="radio" name="q19" value="注意が必要"><span>注意が必要</span></label>
+<label><input type="radio" name="q19" value="NG"><span>NG</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、利用者の健康被害、店舗側の説明責任、年齢確認漏れなどが発生し得ます。発見者側も、公式UIの安全導線を迂回したことで、事故時の責任や利用規約違反を問われる可能性があります。安全確認は単なる飾りではありません。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
+<section class="question" id="q20" data-type="single" data-answer="B" data-points="5">
+  <div class="meta">問20 / 20　5点</div>
+  <h2>アクセス負荷だけを見て『問題ない』と判断する</h2>
+  <p>自作ツールは公式アプリと同じAPIを1回叩くだけなので、サーバー負荷はほぼ変わらない。だから問題ない、と判断した。</p>
+  <div class="choices">
+<label><input type="radio" name="q20" value="A"><span>サーバー負荷が同じなら問題ない</span></label>
+<label><input type="radio" name="q20" value="B"><span>負荷だけでなく、厨房・店員・他の客・問い合わせ対応など実世界の業務影響も考える必要がある</span></label>
+<label><input type="radio" name="q20" value="C"><span>クラウドなら負荷は無限に吸収できる</span></label>
+<label><input type="radio" name="q20" value="D"><span>AIが使えば効率化なので問題ない</span></label>
+  </div>
+  <button type="button" class="answerBtn">この問題に回答する</button>
+  <div class="miniResult" aria-live="polite"></div>
+  <div class="feedback">被害者側では、厨房、店員、会計、他の客の時間が影響を受けます。発見者側も、サーバー負荷だけを根拠に安全だと主張しても、実際の業務妨害や誤注文の責任を免れられるとは限りません。</div>
+  <button type="button" class="nextBtn">次の問題へ</button>
+</section>
+
 
   <section id="result" class="result hidden" aria-live="polite"></section>
 </main>
 
 <script>
-const totalQuestions = 12;
+const totalQuestions = 20;
 let current = 0;
 const scores = Array(totalQuestions).fill(null);
 
@@ -335,9 +443,7 @@ function setProgress() {
 
 function showOnly(index) {
   const qs = questions();
-  qs.forEach((q, i) => {
-    q.classList.toggle("active", i === index);
-  });
+  qs.forEach((q, i) => q.classList.toggle("active", i === index));
   current = index;
   setProgress();
   setTimeout(() => {
@@ -410,7 +516,7 @@ function answerQuestion(q) {
   }
 
   const ok = isCorrect(q, selected);
-  scores[current] = ok ? 10 : 0;
+  scores[current] = ok ? 5 : 0;
   q.dataset.done = "1";
   lock(q);
 
@@ -418,18 +524,16 @@ function answerQuestion(q) {
   void q.offsetWidth;
   q.classList.add(ok ? "correct" : "incorrect");
 
-  mini.textContent = ok ? "正解です。+10点。いい判断です。" : "不正解です。+0点。ここは境界線が危ないところです。";
+  mini.textContent = ok ? "正解です。+5点。いい判断です。" : "不正解です。+0点。ここは境界線が危ないところです。";
   mini.className = `miniResult show ${ok ? "ok" : "ng"}`;
   q.querySelector(".feedback").classList.add("show");
 
-  effect(ok);
-
   const nextBtn = q.querySelector(".nextBtn");
-  if (nextBtn) {
-    nextBtn.textContent = current === totalQuestions - 1 ? "結果を見る" : "次の問題へ";
-    nextBtn.classList.add("show");
-    setTimeout(() => nextBtn.scrollIntoView({ behavior: "smooth", block: "center" }), 250);
-  }
+  nextBtn.textContent = current === totalQuestions - 1 ? "結果を見る" : "次の問題へ";
+  nextBtn.classList.add("show");
+  setTimeout(() => nextBtn.scrollIntoView({ behavior: "smooth", block: "center" }), 250);
+
+  effect(ok);
 }
 
 function goNext(q) {
@@ -448,40 +552,44 @@ function finish() {
   const total = scores.reduce((a, b) => a + (b || 0), 0);
   let badge, level, advice;
 
-  if (total >= 120) {
+  if (total >= 100) {
     badge = "完全防御の守護者";
     level = "満点合格";
-    advice = "脆弱性を見つけても、技術自慢モンスターにならず、報告経路・公開範囲・被害防止をかなり正確に判断できています。";
-  } else if (total >= 110) {
+    advice = "技術力だけでなく、相手の業務・利用者・公開範囲まで見えています。もう勝手に本番を叩かないオーラが出ています。";
+  } else if (total >= 95) {
     badge = "冷静沈着セキュリティ侍";
     level = "高得点合格";
-    advice = "かなり良い判断です。仲間内共有や修正前公開の危険性も理解できています。";
-  } else if (total >= 100) {
-    badge = "責任ある発見者";
+    advice = "かなり良い判断です。仕様の穴、脆弱性、AI自動化、実世界への影響をバランスよく見られています。";
+  } else if (total >= 90) {
+    badge = "責任あるWebエンジニア";
     level = "合格";
-    advice = "基本は合格です。脆弱性を見つけたときは、深追いせず、必要最小限で適切な相手に報告する姿勢を忘れないでください。";
-  } else if (total >= 80) {
+    advice = "合格です。見つけたあとに深追いしない、晒さない、必要最小限で適切に報告するという基本姿勢ができています。";
+  } else if (total >= 75) {
     badge = "うっかり公開しがち見習い";
     level = "惜しい";
-    advice = "もう少しで合格です。『善意の公開』『仲間内だけ』『証拠のつもり』が危険になる場面を重点的に復習してください。";
-  } else if (total >= 60) {
+    advice = "もう少しで合格です。『仲間内だけ』『すごいから拡散』『本番で少しだけ確認』が危険になる場面を復習してください。";
+  } else if (total >= 50) {
     badge = "alert(1)でテンション上がりすぎ勢";
     level = "要再学習";
-    advice = "技術的に気づけることと、倫理的に扱えることは別です。対象URL、攻撃コード、スクリーンショットを広める危険性を確認しましょう。";
+    advice = "技術的に気づけることと、倫理的に扱えることは別です。対象URL、攻撃コード、非公式クライアント、AI自動化の公開リスクを確認しましょう。";
   } else {
     badge = "それ、善意でもインシデント予備軍";
     level = "重点再学習";
-    advice = "実在サービスでの深追い検証、他人の情報確認、仲間内共有、SNS公開は重大な被害につながります。まず許可された環境と責任ある報告の区別から復習してください。";
+    advice = "実在サービスでの深追い検証、他人の情報確認、本番APIの無許可操作、SNS公開は重大な被害につながります。まず許可された環境と責任ある報告の区別から復習してください。";
   }
 
   const result = document.getElementById("result");
   result.classList.remove("hidden");
+  const shareText = `🛡️ Webエンジニアのための技術者倫理テストで「${badge}」でした！\nスコア：${total}/${totalQuestions * 5}点\nAPIの脆弱性を見つけた、AIエージェントで自動化した……本番環境を叩く前に技術者倫理を叩き込め！\nみんなも挑戦しよう。\n#技術者倫理テスト`;
+  const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(location.href)}`;
+
   result.innerHTML = `
     <div class="badge">${badge}</div>
-    <div class="scoreBig">${total} / ${totalQuestions * 10} 点</div>
-    <p><strong>${level}</strong>：${total >= 100 ? '<span class="ok">合格</span>' : '<span class="ng">不合格</span>'}</p>
+    <div class="scoreBig">${total} / ${totalQuestions * 5} 点</div>
+    <p><strong>${level}</strong>：${total >= 90 ? '<span class="ok">合格</span>' : '<span class="ng">不合格</span>'}</p>
     <p>${advice}</p>
-    <p class="small">各問10点、100点以上で合格です。</p>
+    <p class="small">全20問×5点＝満点100点、合格は90点以上です。</p>
+    <a class="shareBtn" href="${shareUrl}" target="_blank" rel="noopener noreferrer">Xで結果を投稿して拡散する</a>
   `;
   result.scrollIntoView({ behavior: "smooth", block: "start" });
 }
