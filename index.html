@@ -7,6 +7,45 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Webエンジニアのための技術者倫理テスト</title>
+<!--
+======================================================================
+  🛡️ 技術者倫理メッセージ / SOURCE VIEWING ETHICS NOTICE
+======================================================================
+
+    ／￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣＼
+   ｜ ソースを見ようとしましたね？   ｜
+    ＼＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿／
+              /
+      ∧＿∧ /
+     ( ･ω･ )  技術者倫理を忘れずに。
+     /つ💻と
+    しーＪ
+
+  もしかして、HTMLソースを見ていますか？
+
+  Webページのソースコードは、ブラウザの機能や開発者ツールで
+  確認できることがあります。これはWeb技術を学ぶうえで
+  とても大切な入口です。
+
+  しかし、
+  「見えること」
+  「コピーできること」
+  「改変できること」
+  「APIや内部処理を推測できること」
+  と、
+  「無断で利用してよいこと」
+  「本番サービスに検証コードを投げてよいこと」
+  「攻撃手順や対象URLを広めてよいこと」
+  はまったく別です。
+
+  他者のWebサービスを調査するときは、必ず許可を得て、
+  影響範囲・利用者・運営者・社会的な被害を考えてください。
+
+  技術力は、人を困らせるためではなく、
+  安全で信頼できるサービスを作るために使いましょう。
+
+======================================================================
+-->
 <style>
 :root {
   --bg:#f6f7fb; --card:#fff; --text:#172033; --muted:#5b6475; --line:#d9deea;
@@ -19,11 +58,16 @@ header .wrap, main { max-width:900px; margin:0 auto; }
 h1 { margin:0 0 8px; font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.3; }
 .lead { color:rgba(255,255,255,.9); margin:0; max-width:780px; }
 main { padding:24px 16px 48px; }
-.notice, .question, .result, .qrBox, .startBox { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0; box-shadow:0 2px 10px rgba(20,30,60,.04); }
-.notice { border-left:6px solid var(--accent); }
-.qrBox { text-align:center; border-left:6px solid var(--accent); }
-.qrBox img { width:min(220px,70vw); height:auto; display:block; margin:10px auto 4px; border:1px solid var(--line); border-radius:12px; background:white; }
-.qrBox p { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+.question, .result, .startBox { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px; margin:16px 0; box-shadow:0 2px 10px rgba(20,30,60,.04); }
+
+.qrIcon {
+  width:34px;
+  height:34px;
+  display:inline-block;
+  background:white;
+  border-radius:8px;
+  padding:4px;
+}
 .startBox {
   text-align:center;
   border-left:6px solid var(--ok);
@@ -105,20 +149,6 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
 </header>
 <main>
-  <section class="qrBox">
-    <strong>スマートフォンからアクセス</strong>
-    <img src="6b094c71d89217a367b8a25f470b113782c7a7be.png" alt="Webエンジニアのための技術者倫理テストのQRコード">
-    <p>QRコードを読み取って、このテストにアクセスできます。</p>
-  </section>
-
-
-  <section class="notice">
-    <strong>注意：</strong>
-    このテストは、実在するWebサイトへの検証をすすめるものではありません。
-    練習は、自分のローカル環境、CTF、授業用の許可された環境で行ってください。
-    実在サービスで脆弱性らしき挙動を見つけた場合は、深追いせず、必要最小限の情報で運営者・管理者・IPAなどの適切な届出窓口に相談します。
-  </section>
-
   <section id="startBox" class="startBox">
     <h2>あなたの倫理観をテストする</h2>
     <p>Webサービスの脆弱性、非公開APIを叩く、AIエージェントによる自動化。 「できる」と「やってよい」の境界を、20問で確認しましょう。</p>
@@ -458,9 +488,53 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 
 
   <section id="result" class="result hidden" aria-live="polite"></section>
+
 </main>
 
 <script>
+// ============================================================
+// 技術者倫理メッセージ
+// ------------------------------------------------------------
+// 右クリックや開発者ツール系ショートカットを検知したときに、
+// 禁止ではなく「できること」と「やってよいこと」の違いを考える
+// メッセージを表示します。
+//
+// 裏コマンド：Ctrl + Alt + R
+// 全問題・正解・解説を表示します。授業での解説用です。
+// ============================================================
+let lastEthicsAlertAt = 0;
+
+function hack() {
+  const now = Date.now();
+  if (now - lastEthicsAlertAt < 1200) return;
+  lastEthicsAlertAt = now;
+
+  alert(
+    "もしかして、" +
+    "ソースを見ようとしましたか？\n\n" +
+    "技術者倫理の観点から考えてみましょう。\n" +
+    "Webページのソースコードは、開発者ツール等で確認できることがあります。\n" +
+    "しかし、確認できることと、無断で利用・改変・攻撃することは別の話です。\n" +
+    "他者のWebサービスを調査するときは、許可を得て、影響範囲を考えましょう。\n" +
+    "技術力は、人を困らせるためではなく、安全なサービスを作るために使いましょう。"
+  );
+}
+
+function isReviewShortcut(event) {
+  return event.ctrlKey && event.altKey && event.key.toLowerCase() === "r";
+}
+
+function isDeveloperToolShortcut(event) {
+  const key = event.key.toLowerCase();
+  return (
+    event.key === "F12" ||
+    (event.ctrlKey && event.shiftKey && key === "i") ||
+    (event.ctrlKey && event.shiftKey && key === "j") ||
+    (event.ctrlKey && event.shiftKey && key === "c") ||
+    (event.ctrlKey && key === "u")
+  );
+}
+
 const totalQuestions = 20;
 let current = 0;
 const scores = Array(totalQuestions).fill(null);
@@ -758,10 +832,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  document.addEventListener("contextmenu", event => {
+    hack();
+  });
+
   document.addEventListener("keydown", event => {
-    if (event.ctrlKey && event.altKey && event.key.toLowerCase() === "r") {
+    if (isReviewShortcut(event)) {
       event.preventDefault();
       revealAllAnswersByShortcut();
+      return;
+    }
+
+    if (isDeveloperToolShortcut(event)) {
+      hack();
     }
   });
 
