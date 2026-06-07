@@ -474,7 +474,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q20" data-type="multi" data-answer="A,B,C,D,E,F,G" data-points="5">
   <div class="meta">問20 / 20　5点</div>
   <h2>危険な共有になりうるものをすべて選ぶ</h2>
-  <p>次のうち、危険な共有になりうるものをすべて選びなさい。</p>
+  <p>次のうち、SNS、クラス全体チャット、友人Discordなど、運営者以外の第三者に見える場所へ共有すると危険になりうるものをすべて選びなさい。ただし、運営者への最小限の報告や、許可された環境での教材公開は別として考えます。</p>
   <div class="choices">
 <label><input type="checkbox" name="q20" value="A"><span>脆弱性のあるURL</span></label>
 <label><input type="checkbox" name="q20" value="B"><span>実際に動く攻撃コード</span></label>
@@ -711,7 +711,13 @@ function escapeHtml(text) {
 function getChoiceText(q, value) {
   const input = q.querySelector(`input[value="${CSS.escape(value)}"]`);
   const span = input ? input.closest("label").querySelector("span") : null;
-  return span ? span.textContent.trim() : value;
+  if (!span) return value;
+
+  // 回答後に選択肢へ追加した「正解」「あなたの選択」バッジは、
+  // ふりかえり一覧の選択肢本文には混ぜない。
+  const clone = span.cloneNode(true);
+  clone.querySelectorAll(".choiceBadge").forEach(badge => badge.remove());
+  return clone.textContent.trim();
 }
 
 function formatAnswerValues(q, values) {
