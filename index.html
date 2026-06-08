@@ -144,6 +144,11 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 .reviewItem h3 { margin:0 0 8px; font-size:1.08rem; line-height:1.45; }
 .reviewItem p { margin:6px 0; }
 .reviewLabel { font-weight:900; }
+.reviewAnswers { display:grid; gap:8px; margin:8px 0; }
+.reviewAnswerValues { margin-top:3px; padding-left:0; }
+.reviewAnswerLine { padding:3px 0 3px 1.2em; text-indent:-1.2em; }
+.answerKey { font-weight:900; }
+.mutedAnswer { color:var(--muted); text-indent:0; padding-left:0; }
 .reviewExplain { margin-top:8px; padding:10px; border-radius:10px; background:#f8fafc; border:1px dashed var(--line); }
 
 </style>
@@ -345,7 +350,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q12" data-type="judgement" data-answer="OK" data-points="5">
   <div class="meta">問12 / 20　5点</div>
   <h2>本番APIを使わずモックで再現する</h2>
-  <p>実店舗の注文APIは叩かず、ローカルPC上にモックサーバーを作った。架空のメニューと架空の注文番号だけを使い、注文ライブラリ・代替クライアント・CLIやAIエージェント連携を学習用に再現した。</p>
+  <p>レストランでの注文用クライアントを学習目的で開発しています。実店舗の注文APIは叩かず、ローカルPC上にモックサーバーを作った。架空のメニューと架空の注文番号だけを使い、注文ライブラリ・代替クライアント・CLIやAIエージェント連携を学習用に再現した。</p>
   <div class="choices">
 <label><input type="radio" name="q12" value="OK"><span>OK</span></label>
 <label><input type="radio" name="q12" value="注意が必要"><span>注意が必要</span></label>
@@ -353,7 +358,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側の実システムには影響しません。発見者側も、学習・研究として安全な形に寄せています。ただし、実在企業のロゴ、実エンドポイント、実トークン、誤認される表現は避けるべきです。</div>
+  <div class="feedback">被害者側の実システムには影響しません。発見者側も、実店舗の仕様やアルゴリズムを解析せず、架空データだけで学習・研究として安全な形に寄せています。ただし、実在企業のロゴ、実エンドポイント、実トークン、誤認される表現は避けるべきです。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -407,12 +412,12 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q16" data-type="single" data-answer="B" data-points="5">
   <div class="meta">問16 / 20　5点</div>
   <h2>IDORの可能性を深追いせず報告する</h2>
-  <p>授業で使う提出システムで、自分の提出物URLの末尾が `/submissions/1042` のような連番になっていることに気づいた。別の番号に変えると他人の提出物が見えるかもしれないと思ったが、あなたは他人の番号を試さず、担当者に『IDORの可能性があります。自分のURLだけで気づきました』と報告した。</p>
+  <p>授業で使う提出システムで、自分の提出物URLの末尾が `/submissions/1042` のような連番になっていることに気づいた。別の番号に変えると他人の提出物が見えるかもしれないと思ったが、あなたは他人の番号を試さず、担当者に『IDOR、つまりURLの番号変更だけで他人の提出物が見える可能性があります。自分のURLだけで気づきました』と報告した。</p>
   <div class="choices">
 <label><input type="radio" name="q16" value="A"><span>他人の提出物が見えるか確認していないので不十分</span></label>
 <label><input type="radio" name="q16" value="B"><span>余計な検証をせず、可能性として報告しているので適切</span></label>
 <label><input type="radio" name="q16" value="C"><span>SNSで注意喚起すべき</span></label>
-<label><input type="radio" name="q16" value="D"><span>IDORという専門用語を使うのは偉そうなので不適切</span></label>
+<label><input type="radio" name="q16" value="D"><span>IDORという専門用語を、説明を添えずに使うのは偉そうなので不適切</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
@@ -474,7 +479,7 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <section class="question" id="q20" data-type="multi" data-answer="A,B,C,D,E,F,G" data-points="5">
   <div class="meta">問20 / 20　5点</div>
   <h2>危険な共有になりうるものをすべて選ぶ</h2>
-  <p>次のうち、SNS、クラス全体チャット、友人Discordなど、運営者以外の第三者に見える場所へ共有すると危険になりうるものをすべて選びなさい。ただし、運営者への最小限の報告や、許可された環境での教材公開は別として考えます。</p>
+  <p>次のうち、SNS、クラス全体チャット、友人Discordなど、運営者以外の第三者に見える場所へ共有すると危険になりうるものをすべて選びなさい。『運営者だけに個別に送る報告』と『第三者に見える場所への共有』は分けて考えます。</p>
   <div class="choices">
 <label><input type="checkbox" name="q20" value="A"><span>脆弱性のあるURL</span></label>
 <label><input type="checkbox" name="q20" value="B"><span>実際に動く攻撃コード</span></label>
@@ -485,11 +490,11 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 <label><input type="checkbox" name="q20" value="G"><span>友人だけのDiscordへの検証方法の共有</span></label>
 <label><input type="checkbox" name="q20" value="H"><span>CTF環境での解説記事</span></label>
 <label><input type="checkbox" name="q20" value="I"><span>自分のローカル環境で作った脆弱アプリの教材</span></label>
-<label><input type="checkbox" name="q20" value="J"><span>運営者に送る最小限の再現情報</span></label>
+<label><input type="checkbox" name="q20" value="J"><span>運営者本人・管理者だけに送る最小限の再現情報（SNS等には投稿しない）</span></label>
   </div>
   <button type="button" class="answerBtn">この問題に回答する</button>
   <div class="miniResult" aria-live="polite"></div>
-  <div class="feedback">被害者側では、攻撃者に必要な情報がそろってしまいます。発見者側も、攻撃コードや修正前手順の共有により被害拡大へ関与したと評価されるリスクがあります。CTFや自作教材など、許可された環境とは分けて考えます。</div>
+  <div class="feedback">被害者側では、攻撃者に必要な情報がそろってしまいます。発見者側も、攻撃コードや修正前手順の共有により被害拡大へ関与したと評価されるリスクがあります。一方で、運営者・管理者だけに必要最小限で報告することや、CTF・自作教材など許可された環境で解説することは、第三者への危険な共有とは分けて考えます。</div>
   <button type="button" class="nextBtn">次の問題へ</button>
 </section>
 
@@ -499,16 +504,6 @@ code { background:#eef2f6; padding:1px 5px; border-radius:5px; }
 </main>
 
 <script>
-// ============================================================
-// 技術者倫理メッセージ
-// ------------------------------------------------------------
-// 右クリックや開発者ツール系ショートカットを検知したときに、
-// 禁止ではなく「できること」と「やってよいこと」の違いを考える
-// メッセージを表示します。
-//
-// 裏コマンド：Ctrl + Alt + R
-// 全問題・正解・解説を表示します。授業での解説用です。
-// ============================================================
 let lastEthicsAlertAt = 0;
 
 function hack() {
@@ -650,7 +645,7 @@ function markChoiceFeedback(q, selected) {
     if (isSelected) {
       const badge = document.createElement("span");
       badge.className = `choiceBadge ${isAnswer ? "selectedBadge" : "wrongBadge"}`;
-      badge.textContent = "あなたの選択";
+      badge.textContent = "（あなたの選択）";
       span.appendChild(badge);
     }
   });
@@ -723,7 +718,22 @@ function getChoiceText(q, value) {
 function formatAnswerValues(q, values) {
   if (!Array.isArray(values)) values = values ? [values] : [];
   if (values.length === 0) return "未選択";
-  return values.map(v => `${v}. ${getChoiceText(q, v)}`).join(" / ");
+  return values.map(v => {
+    const choiceText = getChoiceText(q, v);
+    return v === choiceText ? `${v}` : `${v}. ${choiceText}`;
+  }).join(" / ");
+}
+
+function formatAnswerValuesHtml(q, values) {
+  if (!Array.isArray(values)) values = values ? [values] : [];
+  if (values.length === 0) return '<div class="reviewAnswerLine mutedAnswer">未選択</div>';
+  return values.map(v => {
+    const choiceText = getChoiceText(q, v);
+    const text = v === choiceText
+      ? escapeHtml(v)
+      : `<span class="answerKey">${escapeHtml(v)}.</span> ${escapeHtml(choiceText)}`;
+    return `<div class="reviewAnswerLine">${text}</div>`;
+  }).join("");
 }
 
 function buildReviewHtml() {
@@ -741,8 +751,10 @@ function buildReviewHtml() {
       <article class="reviewItem ${ok ? "reviewCorrect" : "reviewWrong"}">
         <h3>問${i + 1}. ${escapeHtml(title)} ${ok ? '<span class="ok">正解</span>' : '<span class="ng">不正解</span>'}</h3>
         <p>${escapeHtml(body)}</p>
-        <p><span class="reviewLabel">あなたの解答：</span>${escapeHtml(formatAnswerValues(q, selectedValues))}</p>
-        <p><span class="reviewLabel">正解：</span>${escapeHtml(formatAnswerValues(q, answerValues))}</p>
+        <div class="reviewAnswers">
+          <div><span class="reviewLabel">あなたの選択：</span><div class="reviewAnswerValues">${formatAnswerValuesHtml(q, selectedValues)}</div></div>
+          <div><span class="reviewLabel">正解：</span><div class="reviewAnswerValues">${formatAnswerValuesHtml(q, answerValues)}</div></div>
+        </div>
         <div class="reviewExplain"><span class="reviewLabel">解説：</span>${escapeHtml(feedback)}</div>
       </article>
     `;
